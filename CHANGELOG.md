@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.0.3 (8/31/22)
+* Tweaked mamba installation again
+
 ## Version 0.0.2 (8/31/22)
 * Tweaked mamba installation
 
