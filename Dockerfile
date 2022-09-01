@@ -55,7 +55,6 @@ RUN conda config --add channels conda-forge
 # Install mamba so we can install packages before the heat death of the universe
 RUN conda install -y "mamba>=0.25"
 RUN mamba update -n base conda
-RUN mamba clean -y --all
 
 # install conda-build
 RUN mamba install -y conda-build
@@ -65,6 +64,9 @@ RUN mamba install -y python pip requests
 
 # install a minimal set of scientific software
 RUN mamba install -y numpy scipy matplotlib pandas
+
+# clean up
+RUN mamba clean -y --all
 
 ENV IS_DOCKER_8395080871=1
 RUN apt-get install -y --reinstall libxcb-xinerama0
