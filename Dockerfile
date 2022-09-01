@@ -60,6 +60,12 @@ RUN mamba clean -y --all
 # install conda-build
 RUN mamba install -y conda-build
 
+# install minimal python
+RUN mamba install -y python pip requests
+
+# install a minimal set of scientific software
+RUN mamba install -y numpy scipy matplotlib pandas
+
 ENV IS_DOCKER_8395080871=1
 RUN apt-get install -y --reinstall libxcb-xinerama0
 
