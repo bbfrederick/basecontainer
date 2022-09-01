@@ -53,40 +53,12 @@ ENV PATH="/usr/local/miniconda/bin:$PATH" \
 RUN conda config --add channels conda-forge
 
 # Install mamba so we can install packages before the heat death of the universe
-RUN conda install -y mamba
-RUN mamba update -n base conda mamba
+RUN conda install -y "mamba>=0.25"
+RUN mamba update -n base conda
 RUN mamba clean -y --all
 
 # install conda-build
 RUN mamba install -y conda-build
-
-
-# Installing precomputed python packages
-#RUN mamba install -y python \
-#                     pip \
-#                     scipy \
-#                     numpy \
-#                     matplotlib \
-##                     mkl \
-#                     mkl-service \
-#                     statsmodels \
-#                     scikit-image \
-#                     scikit-learn \
-#                     nibabel \
-#                     nilearn \
-#                     keras \
-#                     h5py \
-#                     "tensorflow>=2.4.0" \
-#                     pyqtgraph \
-#                     pyfftw \
-#                     pandas \
-#                     versioneer \
-#                     numba; sync && \
-#    chmod -R a+rX /usr/local/miniconda; sync && \
-#    chmod +x /usr/local/miniconda/bin/*; sync && \
-#    conda-build purge-all; sync && \
-#    conda clean -tipsy && sync
-#RUN df -h
 
 ENV IS_DOCKER_8395080871=1
 RUN apt-get install -y --reinstall libxcb-xinerama0

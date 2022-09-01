@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.0.4 (8/31/22)
+* Trying to force a recent mamba version
+
 ## Version 0.0.3 (8/31/22)
 * Tweaked mamba installation again
 
