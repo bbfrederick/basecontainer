@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.0.6 (10/5/22)
+* Added AWS access libraries 
+
 ## Version 0.0.5 (10/5/22)
 * Now support multiarch builds (amd64 and arm64)
 

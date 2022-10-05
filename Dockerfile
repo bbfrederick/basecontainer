@@ -18,6 +18,9 @@ RUN apt-get install -y --no-install-recommends \
                     libgl1-mesa-glx \
                     libx11-xcb1 \
                     lsb-release \
+                    s3fs \
+                    awscli \
+                    jq \
                     git
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
