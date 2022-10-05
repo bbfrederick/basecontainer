@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.0.5 (10/5/22)
+* Now support multiarch builds (amd64 and arm64)
+
 ## Version 0.0.4 (8/31/22)
 * Trying to force a recent mamba version
 
