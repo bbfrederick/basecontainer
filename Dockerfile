@@ -37,11 +37,11 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Find out what our architecture is
 ARG TARGETARCH
 RUN <<EOT ash
-    if [ "x86_64" = "$TARGETARCH" ]; then
+    if [ "amd64" = "$TARGETARCH" ]; then
         curl -sSLO https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-x86_64.sh && \
         bash Miniconda3-py39_4.12.0-Linux-x86_64.sh -b -p /usr/local/miniconda && \
         rm Miniconda3-py39_4.12.0-Linux-x86_64.sh
-    elif [ "aarch64" = "$TARGETARCH" ]; then
+    elif [ "arm64" = "$TARGETARCH" ]; then
         curl -sSLO https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-aarch64.sh && \
         bash Miniconda3-py39_4.12.0-Linux-aarch64.sh -b -p /usr/local/miniconda && \
         rm Miniconda3-py39_4.12.0-Linux-aarch64.sh
