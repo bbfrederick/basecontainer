@@ -3,8 +3,11 @@ FROM ubuntu:20.04
 
 # Prepare environment
 RUN df -h
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=America/New_York
+RUN apt-get update && \
+    apt-get install -y tzdata && \
+    apt-get install -y --no-install-recommends \
                     curl \
                     bzip2 \
                     ca-certificates \
@@ -22,9 +25,6 @@ RUN apt-get install -y --no-install-recommends \
                     awscli \
                     jq \
                     git
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=America/New_York
-RUN apt-get install -y tzdata
 RUN apt-get install -y --reinstall libqt5dbus5 
 RUN apt-get install -y --reinstall libqt5widgets5 
 RUN apt-get install -y --reinstall libqt5network5 

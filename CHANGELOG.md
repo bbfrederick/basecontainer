@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.0.7 (10/5/22)
+* Moved time zone setting to the beginning to avoid feedback requirement
+
 ## Version 0.0.6 (10/5/22)
 * Added AWS access libraries 
 * Updated README
