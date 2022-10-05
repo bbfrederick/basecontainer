@@ -34,11 +34,26 @@ RUN apt-get install -y --reinstall libxcb-xinerama0
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Find out what our architecture is
+ARG TARGETARCH
+RUN <<EOT ash
+    if [ "x86_64" = "$TARGETARCH" ]; then
+        curl -sSLO https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-x86_64.sh && \
+        bash Miniconda3-py39_4.12.0-Linux-x86_64.sh -b -p /usr/local/miniconda && \
+        rm Miniconda3-py39_4.12.0-Linux-x86_64.sh
+    elif [ "aarch64" = "$TARGETARCH" ]; then
+        curl -sSLO https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-aarch64.sh && \
+        bash Miniconda3-py39_4.12.0-Linux-aarch64.sh -b -p /usr/local/miniconda && \
+        rm Miniconda3-py39_4.12.0-Linux-aarch64.sh
+    else
+        echo "invalid architecture "$TARGETARCH
+    fi
+EOT
 
 # Installing and setting up miniconda
-RUN curl -sSLO https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-x86_64.sh && \
-    bash Miniconda3-py39_4.12.0-Linux-x86_64.sh -b -p /usr/local/miniconda && \
-    rm Miniconda3-py39_4.12.0-Linux-x86_64.sh
+#RUN curl -sSLO https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-x86_64.sh && \
+#    bash Miniconda3-py39_4.12.0-Linux-${BUILDARCH}.sh -b -p /usr/local/miniconda && \
+#    rm Miniconda3-py39_4.12.0-Linux-${BUILDARCH}.sh
 
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
