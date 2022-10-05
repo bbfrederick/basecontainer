@@ -34,7 +34,6 @@ RUN apt-get install -y --reinstall libqt5core5a
 RUN apt-get install -y --reinstall libxkbcommon-x11-0
 RUN apt-get install -y --reinstall libxcb-xinerama0
 
-
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install and set up miniconda
