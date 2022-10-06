@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.1.0 (10/6/22)
+* Moved apt-get clean after the last install so we don't have to reload things.
+
 ## Version 0.0.9 (10/6/22)
 * Convert to system python and pip for installation.  Mamba is just too slow.
 
