@@ -1,4 +1,4 @@
-# Use Ubuntu 20.04 LTS
+# Use Ubuntu 22.04
 FROM ubuntu:22.04
 
 # Prepare environment
