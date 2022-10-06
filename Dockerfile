@@ -16,7 +16,7 @@ RUN apt-get update && \
                     autoconf \
                     libtool \
                     gnupg \
-                    python3 \
+                    python3.9 \
                     pip \
                     pkg-config \
                     xterm \
