@@ -36,8 +36,6 @@ RUN apt-get install -y --reinstall libqt5core5a
 RUN apt-get install -y --reinstall libxkbcommon-x11-0
 RUN apt-get install -y --reinstall libxcb-xinerama0
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
 ENV PATH="/usr/local/bin:$PATH" \
@@ -55,6 +53,7 @@ RUN pip install numpy scipy matplotlib pandas
 
 ENV IS_DOCKER_8395080871=1
 RUN apt-get install -y --reinstall libxcb-xinerama0
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ARG VERSION
 ARG BUILD_DATE
