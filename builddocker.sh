@@ -12,7 +12,7 @@ IMAGE=basecontainer
 git pull
 
 # bump version
-python revversion.py
+#python revversion.py
 version=`cat VERSION | sed 's/+/ /g' | sed 's/v//g' | awk '{print $1}'`
 echo "version: $version"
 
