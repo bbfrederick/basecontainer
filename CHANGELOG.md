@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.0.9 (10/6/22)
+* Convert to system python and pip for installation.  Mamba is just too slow.
+
 ## Version 0.0.8 (10/6/22)
 * Added dependabot, updated a lot of script and container dependencies.
 
