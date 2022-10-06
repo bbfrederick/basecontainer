@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.0.8 (10/6/22)
+* Added dependabot, updated a lot of script and container dependencies.
+
 ## Version 0.0.7 (10/5/22)
 * Moved time zone setting to the beginning to avoid feedback requirement
 
