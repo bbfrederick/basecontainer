@@ -16,8 +16,6 @@ RUN apt-get update && \
                     autoconf \
                     libtool \
                     gnupg \
-                    python3.9 \
-                    pip \
                     pkg-config \
                     xterm \
                     libgl1-mesa-glx \
@@ -36,24 +34,53 @@ RUN apt-get install -y --reinstall libqt5core5a
 RUN apt-get install -y --reinstall libxkbcommon-x11-0
 RUN apt-get install -y --reinstall libxcb-xinerama0
 
+# Install and set up miniconda
+ARG CONDA_VERSION=py39_4.12.0
+
+RUN curl -fso install-conda.sh \
+    https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-$(uname -s)-$(uname -m).sh
+RUN bash install-conda.sh -b -p /usr/local/miniconda
+RUN rm install-conda.sh
+
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
-ENV PATH="/usr/local/bin:$PATH" \
+ENV PATH="/usr/local/miniconda/bin:$PATH" \
+    CPATH="/usr/local/miniconda/include/:$CPATH" \
     LANG="C.UTF-8" \
     LC_ALL="C.UTF-8" \
     PYTHONNOUSERSITE=1
 
 
+# add the conda-forge channel
+RUN conda config --add channels conda-forge
+
+# Install mamba so we can install packages before the heat death of the universe
+RUN conda install -y "mamba>=0.25"
+RUN mamba update -n base conda
+
+# install conda-build
+RUN mamba install -y conda-build
+
 # install minimal python
-RUN pip install --upgrade pip
-RUN pip install requests
+RUN mamba install -y python pip requests
+
+
+# Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
+#ENV PATH="/usr/local/bin:$PATH" \
+#    LANG="C.UTF-8" \
+#    LC_ALL="C.UTF-8" \
+#    PYTHONNOUSERSITE=1
+
+
+## install minimal python
+#RUN pip install --upgrade pip
+#RUN pip install requests
 
 # install a minimal set of scientific software
 RUN pip install numpy scipy matplotlib pandas
 
 ENV IS_DOCKER_8395080871=1
-RUN apt-get install -y --reinstall libxcb-xinerama0
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+#RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ARG VERSION
 ARG BUILD_DATE
