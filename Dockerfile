@@ -77,7 +77,7 @@ RUN mamba install -y python pip requests
 #RUN pip install requests
 
 # install a minimal set of scientific software
-RUN pip install numpy scipy matplotlib pandas
+RUN mamba install -y numpy scipy matplotlib pandas pyqt
 
 ENV IS_DOCKER_8395080871=1
 #RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
