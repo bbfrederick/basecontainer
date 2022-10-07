@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.1.1 (10/6/22)
+* Converted back to mamba, moved pyqt installation to basecontainer.  Works on both architectures now.
+
 ## Version 0.1.0 (10/6/22)
 * Moved apt-get clean after the last install so we don't have to reload things.
 
