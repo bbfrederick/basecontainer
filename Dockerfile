@@ -1,6 +1,9 @@
 # Use Ubuntu 22.04
 FROM ubuntu:22.04
 
+# set the shell to bash
+SHELL [ "/bin/bash", "--login", "-c" ]
+
 # Prepare environment
 RUN df -h
 ARG DEBIAN_FRONTEND=noninteractive
@@ -34,7 +37,7 @@ RUN apt-get install -y --reinstall libqt5core5a
 RUN apt-get install -y --reinstall libxkbcommon-x11-0
 RUN apt-get install -y --reinstall libxcb-xinerama0
 
-# Install and set up miniconda
+# Install and set up the appropriate miniconda for the architecture
 ARG CONDA_VERSION=py39_4.12.0
 
 RUN curl -fso install-conda.sh \
@@ -62,22 +65,13 @@ RUN mamba update -n base conda
 RUN mamba install -y conda-build
 
 # install minimal python
-RUN mamba install -y python pip requests
-
-
-# Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
-#ENV PATH="/usr/local/bin:$PATH" \
-#    LANG="C.UTF-8" \
-#    LC_ALL="C.UTF-8" \
-#    PYTHONNOUSERSITE=1
-
-
-## install minimal python
-#RUN pip install --upgrade pip
-#RUN pip install requests
+RUN mamba install -y python pip
 
 # install a minimal set of scientific software
 RUN mamba install -y numpy scipy matplotlib pandas pyqt
+
+# clean up
+RUN conda clean --all
 
 ENV IS_DOCKER_8395080871=1
 #RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
