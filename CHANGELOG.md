@@ -1,5 +1,9 @@
 # Release history
 
+## Version 0.1.3 (10/13/22)
+* Remove some dead code from Dockerfile.
+* Used a hack to fix the "urllib3 doesn't match" error during build.
+
 ## Version 0.1.2 (10/12/22)
 * Do some cleanup before exiting.
 * Use bash as the shell.
