@@ -5,7 +5,6 @@ FROM ubuntu:22.04
 SHELL [ "/bin/bash", "--login", "-c" ]
 
 # Prepare environment
-RUN df -h
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 RUN apt-get update && \
