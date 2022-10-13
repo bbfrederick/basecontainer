@@ -34,7 +34,6 @@ RUN apt-get remove qtchooser
 RUN apt-get install -y --reinstall libqt5gui5 
 RUN apt-get install -y --reinstall libqt5core5a 
 RUN apt-get install -y --reinstall libxkbcommon-x11-0
-RUN apt-get install -y --reinstall libxcb-xinerama0
 
 # Install and set up the appropriate miniconda for the architecture
 ARG CONDA_VERSION=py39_4.12.0
@@ -72,11 +71,14 @@ RUN mamba install -y numpy scipy matplotlib pandas pyqt
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN mamba install -y requests --force-reinstall
 
+# reinstall xinerama0 to get pyqt working
+RUN apt-get install -y --reinstall libxcb-xinerama0
+
 # clean up
 RUN conda clean --all
 
 ENV IS_DOCKER_8395080871=1
-#RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ARG VERSION
 ARG BUILD_DATE
