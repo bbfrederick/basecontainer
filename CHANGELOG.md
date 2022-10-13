@@ -1,5 +1,9 @@
 # Release history
 
+## Version 0.1.2 (10/12/22)
+* Do some cleanup before exiting.
+* Use bash as the shell.
+
 ## Version 0.1.1 (10/6/22)
 * Converted back to mamba, moved pyqt installation to basecontainer.  Works on both architectures now.
 
