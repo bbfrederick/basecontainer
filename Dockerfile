@@ -22,6 +22,7 @@ RUN apt-get update && \
                     xterm \
                     libgl1-mesa-glx \
                     libx11-xcb1 \
+                    libxkbcommon-x11-dev \
                     lsb-release \
                     s3fs \
                     awscli \
