@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.1.4 (2/8/23)
+* Merged pull requests from dependabot
+
 ## Version 0.1.3 (10/13/22)
 * Remove some dead code from Dockerfile.
 * Used a hack to fix the "urllib3 doesn't match" error during build.
