@@ -1,4 +1,4 @@
-# Use Ubuntu 22.04
+# Use Ubuntu 23.04
 FROM ubuntu:23.04
 
 # set the shell to bash

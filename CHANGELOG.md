@@ -1,7 +1,11 @@
 # Release history
 
+## Version 0.1.5 (2/8/23)
+* Fixed some new mamba build order issues.
+* Updated the build action to fix a deprecated method of getting the version.
+
 ## Version 0.1.4 (2/8/23)
-* Merged pull requests from dependabot
+* Merged pull requests from dependabot.
 
 ## Version 0.1.3 (10/13/22)
 * Remove some dead code from Dockerfile.
