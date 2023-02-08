@@ -1,5 +1,5 @@
 # Use Ubuntu 22.04
-FROM ubuntu:22.04
+FROM ubuntu:23.04
 
 # set the shell to bash
 SHELL [ "/bin/bash", "--login", "-c" ]
