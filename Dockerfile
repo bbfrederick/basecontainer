@@ -70,7 +70,8 @@ RUN mamba install -y python pip
 RUN mamba install -y numpy scipy matplotlib pandas 
 
 # install pyqt stuff
-RUN mamba install pyqt pyqt-impl pyqt5-sip pyqtgraph
+#RUN mamba install pyqt pyqt-impl pyqt5-sip pyqtgraph
+RUN mamba install pyqt pyqt5-sip pyqtgraph
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN mamba install -y requests --force-reinstall
