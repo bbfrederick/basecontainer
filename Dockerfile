@@ -37,7 +37,7 @@ RUN apt-get install -y --reinstall libqt5core5a
 RUN apt-get install -y --reinstall libxkbcommon-x11-0
 
 # Install and set up the appropriate miniconda for the architecture
-ARG CONDA_VERSION=py39_4.12.0
+ARG CONDA_VERSION=py310_23.1.0-1
 
 RUN curl -fso install-conda.sh \
     https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-$(uname -s)-$(uname -m).sh
