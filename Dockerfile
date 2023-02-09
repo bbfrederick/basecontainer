@@ -57,7 +57,7 @@ ENV PATH="/usr/local/miniconda/bin:$PATH" \
 RUN conda config --add channels conda-forge
 
 # Install mamba so we can install packages before the heat death of the universe
-RUN conda install -y "mamba>=0.25"
+RUN conda install -y "mamba>=1.0"
 RUN mamba update -n base conda
 
 # install conda-build
@@ -68,6 +68,7 @@ RUN mamba install -y python pip
 
 # install a minimal set of scientific software
 RUN mamba install -y numpy scipy matplotlib pandas 
+RUN mamba install -y scikit-image scikit-learn nilearn
 
 # install pyqt stuff
 #RUN mamba install pyqt pyqt-impl pyqt5-sip pyqtgraph
