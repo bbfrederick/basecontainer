@@ -66,12 +66,14 @@ RUN mamba install -y conda-build
 # install minimal python
 RUN mamba install -y python pip
 
-# install a minimal set of scientific software
+# install a standard set of scientific software
 RUN mamba install -y numpy scipy matplotlib pandas 
 RUN mamba install -y scikit-image scikit-learn nilearn
+RUN mamba install -y statsmodels nibabel
+RUN mamba install -y numba pyfftw 
+RUN mamba install -y versioneer tqdm
 
 # install pyqt stuff
-#RUN mamba install pyqt pyqt-impl pyqt5-sip pyqtgraph
 RUN mamba install pyqt pyqt5-sip pyqtgraph
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
