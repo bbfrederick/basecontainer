@@ -75,7 +75,7 @@ RUN mamba install -y versioneer tqdm
 RUN mamba install -y "pyfftw>=0.13.1"
 
 # install pyqt stuff
-RUN mamba install pyqt pyqt5-sip pyqtgraph
+RUN mamba install pyqt pyqt5-sip "pyqtgraph<0.13.0"
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN mamba install -y requests --force-reinstall
