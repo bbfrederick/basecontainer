@@ -70,7 +70,7 @@ RUN mamba install -y python pip
 RUN mamba install -y numpy scipy matplotlib pandas 
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
-RUN mamba install -y numba pyfftw 
+RUN mamba install -y numba pyfftw=0.12
 RUN mamba install -y versioneer tqdm
 
 # install pyqt stuff
