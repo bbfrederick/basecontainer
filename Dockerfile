@@ -6,7 +6,7 @@ SHELL [ "/bin/bash", "--login", "-c" ]
 
 # figure out what we're building for
 ARG TARGETPLATFORM
-RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=amd64; elif [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then ARCHITECTURE=arm; elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then ARCHITECTURE=aarch64; else ARCHITECTURE=amd64; fi
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ENV ARCHITECTURE=amd64; elif [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then ENV ARCHITECTURE=arm; elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then ENV ARCHITECTURE=aarch64; else ENV ARCHITECTURE=amd64; fi
 RUN echo "TARGETPLATFORM is "$TARGETPLATFORM
 RUN echo "ARCHITECTURE is "$ARCHITECTURE
 
