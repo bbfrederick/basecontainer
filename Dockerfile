@@ -4,6 +4,12 @@ FROM ubuntu:23.04
 # set the shell to bash
 SHELL [ "/bin/bash", "--login", "-c" ]
 
+# figure out what we're building for
+ARG TARGETPLATFORM
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=amd64; elif [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then ARCHITECTURE=arm; elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then ARCHITECTURE=aarch64; else ARCHITECTURE=amd64; fi
+RUN echo "TARGETPLATFORM is "$TARGETPLATFORM
+RUN echo "ARCHITECTURE is "$ARCHITECTURE
+
 # Prepare environment
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
@@ -73,8 +79,7 @@ RUN mamba install -y statsmodels nibabel
 RUN mamba install -y numba
 RUN mamba install -y versioneer tqdm
 #RUN mamba install -y "pyfftw>=0.13.1"
-ARG TARGETPLATFORM
-RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=amd64; elif [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then ARCHITECTURE=arm; elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then ARCHITECTURE=aarch64; else ARCHITECTURE=amd64; fi
+
 RUN if [ "$ARCHITECTURE" = "amd64" ] ; \
     then \
         mamba install -y "pyfftw=0.13.0=py39h51d1ae8_0"; \
