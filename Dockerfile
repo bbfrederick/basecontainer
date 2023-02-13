@@ -78,15 +78,15 @@ ARG TARGETPLATFORM
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
         echo "ARCHITECTURE=amd64"; \
         #mamba install -y "pyfftw=0.13.0=py39h51d1ae8_0"; \
-        pip install pyfftw
+        pip install pyfftw;
     elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
         echo "ARCHITECTURE=aarch64"; \
         #mamba install -y "pyfftw>=0.13.1" ; \
-        pip install pyfftw
+        pip install pyfftw;
     else \
         echo "ARCHITECTURE=amd64"; \
         #mamba install -y "pyfftw=0.13.0=py39h51d1ae8_0"; \
-        pip install pyfftw
+        pip install pyfftw;
     fi
 
 # install pyqt stuff
