@@ -99,7 +99,10 @@ RUN mamba install pyqt pyqt5-sip "pyqtgraph<0.13.0"
 RUN mamba install -y requests --force-reinstall
 
 # reinstall xinerama0 to get pyqt working
-RUN apt-get install -y --reinstall libxcb-xinerama0
+#RUN apt-get install -y --reinstall libxcb-xinerama0
+
+# proposed fix to the 'Could not load the Qt platform plugin "xcb" in ""' problem
+ENV QT_QPA_PLATFORM=offscreen
 
 # clean up
 RUN conda clean --all
