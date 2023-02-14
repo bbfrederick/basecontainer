@@ -49,7 +49,7 @@ ENV PATH="/usr/local/miniconda/bin:$PATH" \
 RUN conda config --add channels conda-forge
 
 # Install mamba so we can install packages before the heat death of the universe
-RUN conda install -y "mamba>=1.0"
+RUN conda install -y "mamba>=1.0" "certifi>=2022.12.07"
 RUN mamba update -n base conda
 
 # install conda-build
