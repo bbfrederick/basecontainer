@@ -28,17 +28,9 @@ RUN apt-get update && \
                     awscli \
                     jq \
                     git
-RUN apt-get install -y --reinstall libqt5dbus5 
-RUN apt-get install -y --reinstall libqt5widgets5 
-RUN apt-get install -y --reinstall libqt5network5 
-RUN apt-get remove qtchooser
-RUN apt-get install -y --reinstall libqt5gui5 
-RUN apt-get install -y --reinstall libqt5core5a 
-RUN apt-get install -y --reinstall libxkbcommon-x11-0
 
 # Install and set up the appropriate miniconda for the architecture
 ARG CONDA_VERSION=py310_23.1.0-1
-
 RUN curl -fso install-conda.sh \
     https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-$(uname -s)-$(uname -m).sh
 RUN bash install-conda.sh -b -p /usr/local/miniconda
@@ -73,11 +65,11 @@ RUN mamba install -y statsmodels nibabel
 RUN mamba install -y numba
 RUN mamba install -y versioneer tqdm
 
-# figure out what we're building for, and install the appropriate pyfftw
-ARG TARGETPLATFORM
+# install pyfftw.  Use pip to get around bad conda build
+#mamba install -y "pyfftw=0.13.0=py39h51d1ae8_0"; \
+#ARG TARGETPLATFORM
 #RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
 #        echo "ARCHITECTURE=amd64"; \
-#        #mamba install -y "pyfftw=0.13.0=py39h51d1ae8_0"; \
 #        pip install pyfftw;
 #    else \
 #        if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
@@ -98,11 +90,18 @@ RUN mamba install pyqt pyqt5-sip "pyqtgraph<0.13.0"
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN mamba install -y requests --force-reinstall
 
-# reinstall xinerama0 to get pyqt working
-#RUN apt-get install -y --reinstall libxcb-xinerama0
+# reinstall several things to get pyqt working
+RUN apt-get install -y --reinstall libqt5dbus5 
+RUN apt-get install -y --reinstall libqt5widgets5 
+RUN apt-get install -y --reinstall libqt5network5 
+RUN apt-get remove qtchooser
+RUN apt-get install -y --reinstall libqt5gui5 
+RUN apt-get install -y --reinstall libqt5core5a 
+RUN apt-get install -y --reinstall libxkbcommon-x11-0
+RUN apt-get install -y --reinstall libxcb-xinerama0
 
 # proposed fix to the 'Could not load the Qt platform plugin "xcb" in ""' problem
-ENV QT_QPA_PLATFORM=offscreen
+#ENV QT_QPA_PLATFORM=offscreen
 
 # clean up
 RUN conda clean --all
