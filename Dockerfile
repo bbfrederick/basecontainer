@@ -91,14 +91,18 @@ RUN mamba install pyqt pyqt5-sip "pyqtgraph<0.13.0"
 RUN mamba install -y requests --force-reinstall
 
 # reinstall several things to get pyqt working
-RUN apt-get install -y --reinstall libqt5dbus5 
-RUN apt-get install -y --reinstall libqt5widgets5 
-RUN apt-get install -y --reinstall libqt5network5 
-RUN apt-get remove qtchooser
-RUN apt-get install -y --reinstall libqt5gui5 
-RUN apt-get install -y --reinstall libqt5core5a 
-RUN apt-get install -y --reinstall libxkbcommon-x11-0
-RUN apt-get install -y --reinstall libxcb-xinerama0
+#RUN apt-get install -y --reinstall libqt5dbus5 
+#RUN apt-get install -y --reinstall libqt5widgets5 
+#RUN apt-get install -y --reinstall libqt5network5 
+#RUN apt-get remove qtchooser
+#RUN apt-get install -y --reinstall libqt5gui5 
+#RUN apt-get install -y --reinstall libqt5core5a 
+#RUN apt-get install -y --reinstall libxkbcommon-x11-0
+#RUN apt-get install -y --reinstall libxcb-xinerama0
+
+# nuke the extraneous plugin directory
+RUN rm -r /usr/lib/aarch64-linux-gnu/qt5/plugins
+#RUN rm -r ls -l /usr/local/miniconda/pkgs/qt-main*/plugins
 
 # proposed fix to the 'Could not load the Qt platform plugin "xcb" in ""' problem
 #ENV QT_QPA_PLATFORM=offscreen
