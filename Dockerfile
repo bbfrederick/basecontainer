@@ -72,6 +72,9 @@ RUN pip install pyfftw
 # install pyqt stuff
 RUN mamba install pyqt pyqt5-sip "pyqtgraph<0.13.0"
 
+# security patches
+RUN mamba install -y "wheel>=0.38.1" "certifi>=2022.12.07"
+
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN mamba install -y requests --force-reinstall
 
