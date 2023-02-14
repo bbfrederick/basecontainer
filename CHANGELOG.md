@@ -1,5 +1,12 @@
 # Release history
 
+## Version 0.1.6 (2/14/23)
+* Moved the majority of the scientific libraries into basecontainer.
+* Updated to miniconda py310_23.1.0-1.
+* Updated to new github docker build action.
+* Nailed down pyqtgraph to <0.13 to avoid some breaking changes in other packages.
+* Got pyqt working again by moving library reinstalls to the end of the build.
+
 ## Version 0.1.5 (2/8/23)
 * Fixed some new mamba build order issues.
 * Updated the build action to fix a deprecated method of getting the version.

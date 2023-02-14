@@ -66,22 +66,7 @@ RUN mamba install -y numba
 RUN mamba install -y versioneer tqdm
 
 # install pyfftw.  Use pip to get around bad conda build
-#mamba install -y "pyfftw=0.13.0=py39h51d1ae8_0"; \
-#ARG TARGETPLATFORM
-#RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-#        echo "ARCHITECTURE=amd64"; \
-#        pip install pyfftw;
-#    else \
-#        if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-#            echo "ARCHITECTURE=aarch64"; \
-#            #mamba install -y "pyfftw>=0.13.1" ; \
-#            pip install pyfftw;
-#        else \
-#            echo "ARCHITECTURE=amd64"; \
-#            #mamba install -y "pyfftw=0.13.0=py39h51d1ae8_0"; \
-#            pip install pyfftw;
-#        fi
-#    fi
+#mamba install -y pyfftw \
 RUN pip install pyfftw
 
 # install pyqt stuff
@@ -99,10 +84,6 @@ RUN mamba install -y requests --force-reinstall
 #RUN apt-get install -y --reinstall libqt5core5a 
 #RUN apt-get install -y --reinstall libxkbcommon-x11-0
 #RUN apt-get install -y --reinstall libxcb-xinerama0
-
-# nuke the extraneous plugin directory
-RUN rm -r /usr/lib/aarch64-linux-gnu/qt5/plugins
-#RUN rm -r ls -l /usr/local/miniconda/pkgs/qt-main*/plugins
 
 # proposed fix to the 'Could not load the Qt platform plugin "xcb" in ""' problem
 #ENV QT_QPA_PLATFORM=offscreen
