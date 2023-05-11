@@ -30,7 +30,7 @@ RUN apt-get update && \
                     git
 
 # Install and set up the appropriate miniconda for the architecture
-ARG CONDA_VERSION=py310_23.1.0-1
+ARG CONDA_VERSION=py310_23.3.1-0
 RUN curl -fso install-conda.sh \
     https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-$(uname -s)-$(uname -m).sh
 RUN bash install-conda.sh -b -p /usr/local/miniconda
@@ -62,7 +62,7 @@ RUN mamba install -y python pip
 RUN mamba install -y numpy scipy matplotlib pandas 
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
-RUN mamba install -y numba
+#RUN mamba install -y numba
 RUN mamba install -y versioneer tqdm
 
 # install pyfftw.  Use pip to get around bad conda build

@@ -3,7 +3,7 @@
 Unix base container for fredericklab tools.
 
 * Ubuntu 23.04LTS base
-* Python 3.9
+* Python 3.10
 * mamba
 * A minimal set of scientific libraries and pyqt
 * AWS access libraries
