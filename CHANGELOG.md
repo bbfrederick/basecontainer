@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.1.7 (5/11/23)
+* Updated to miniconda py310_23.3.1-0.
+
 ## Version 0.1.6 (2/14/23)
 * Moved the majority of the scientific libraries into basecontainer.
 * Updated to miniconda py310_23.1.0-1.
