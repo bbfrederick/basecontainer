@@ -55,8 +55,8 @@ RUN mamba update -n base conda
 # install conda-build
 RUN mamba install -y conda-build
 
-# install minimal python
-RUN mamba install -y python pip
+# install minimal python 3.11
+RUN mamba install -y python==3.11 pip
 
 # install a standard set of scientific software
 RUN mamba install -y numpy scipy matplotlib pandas 
