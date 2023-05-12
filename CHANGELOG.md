@@ -1,5 +1,9 @@
 # Release history
 
+## Version 0.1.8 (5/11/23)
+* Moved to Python 3.11.
+* Do not install numba.
+
 ## Version 0.1.7 (5/11/23)
 * Updated to miniconda py310_23.3.1-0.
 
