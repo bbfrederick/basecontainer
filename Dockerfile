@@ -52,11 +52,11 @@ RUN conda config --add channels conda-forge
 RUN conda install -y "mamba>=1.0" "certifi>=2022.12.07"
 RUN mamba update -n base conda
 
+# update to py3.11
+RUN mamba install -y python=3.11 pip
+
 # install conda-build
 RUN mamba install -y conda-build
-
-# install minimal python 3.11
-RUN mamba install -y python==3.11 pip
 
 # install a standard set of scientific software
 RUN mamba install -y numpy scipy matplotlib pandas 
