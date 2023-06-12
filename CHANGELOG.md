@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.1.9 (6/12/23)
+* Updated to Ubuntu 23.10
+
 ## Version 0.1.8 (5/11/23)
 * Moved to Python 3.11.
 * Do not install numba.
