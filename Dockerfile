@@ -49,7 +49,7 @@ ENV PATH="/usr/local/minimamba/bin:$PATH" \
     LC_ALL="C.UTF-8" \
     PYTHONNOUSERSITE=1
 
-RUN ls /usr/local/minimamba/bin
+RUN ls /usr/local/minimamba
 
 # update mamba
 RUN mamba install mamba
