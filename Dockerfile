@@ -36,9 +36,6 @@ RUN curl -fso install-conda.sh \
 RUN bash install-conda.sh -b -p /usr/local/miniconda
 RUN rm install-conda.sh
 
-# update conda
-RUN conda install conda=23.7.2
-
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
 ENV PATH="/usr/local/miniconda/bin:$PATH" \
     CPATH="/usr/local/miniconda/include/:$CPATH" \
@@ -46,6 +43,8 @@ ENV PATH="/usr/local/miniconda/bin:$PATH" \
     LC_ALL="C.UTF-8" \
     PYTHONNOUSERSITE=1
 
+# update conda
+RUN conda install conda=23.7.2
 
 # add the conda-forge channel
 RUN conda config --add channels conda-forge
