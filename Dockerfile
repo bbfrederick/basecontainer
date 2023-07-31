@@ -37,8 +37,10 @@ RUN apt-get update && \
 #RUN rm install-conda.sh
 
 # Install and set up the appropriate micromamba for the architecture
+ARG SYSTYPE=$(uname -s)
+ARG PROCTYPE=${uname -m)
 RUN curl -fso install-mamba.sh \
-    https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname -s)-$(uname -m).sh
+    https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-${SYSTYPE}-${PROCTYPE}.sh
 RUN bash install-mamba.sh -b -p /usr/local/minimamba
 RUN rm install-mamba.sh
 
