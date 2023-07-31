@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.2.0 (7/31/23)
+* Install Python 3.11 directly
+
 ## Version 0.1.9 (6/12/23)
 * Updated to Ubuntu 23.10
 

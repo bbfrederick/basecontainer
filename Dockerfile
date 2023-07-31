@@ -1,4 +1,4 @@
-# Use Ubuntu 23.04
+# Use Ubuntu 23.10
 FROM ubuntu:23.10
 
 # set the shell to bash
@@ -30,7 +30,7 @@ RUN apt-get update && \
                     git
 
 # Install and set up the appropriate miniconda for the architecture
-ARG CONDA_VERSION=py310_23.3.1-0
+ARG CONDA_VERSION=py311_23.5.2-0
 RUN curl -fso install-conda.sh \
     https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-$(uname -s)-$(uname -m).sh
 RUN bash install-conda.sh -b -p /usr/local/miniconda
@@ -50,10 +50,7 @@ RUN conda config --add channels conda-forge
 
 # Install mamba so we can install packages before the heat death of the universe
 RUN conda install -y "mamba>=1.0" "certifi>=2022.12.07"
-RUN mamba update -n base conda
-
-# update to py3.11
-RUN mamba install -y python=3.11 pip
+RUN mamba update -n base conda pip
 
 # install conda-build
 RUN mamba install -y conda-build
@@ -78,21 +75,8 @@ RUN mamba install -y "wheel>=0.38.1" "certifi>=2022.12.07"
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN mamba install -y requests --force-reinstall
 
-# reinstall several things to get pyqt working
-#RUN apt-get install -y --reinstall libqt5dbus5 
-#RUN apt-get install -y --reinstall libqt5widgets5 
-#RUN apt-get install -y --reinstall libqt5network5 
-#RUN apt-get remove qtchooser
-#RUN apt-get install -y --reinstall libqt5gui5 
-#RUN apt-get install -y --reinstall libqt5core5a 
-#RUN apt-get install -y --reinstall libxkbcommon-x11-0
-#RUN apt-get install -y --reinstall libxcb-xinerama0
-
-# proposed fix to the 'Could not load the Qt platform plugin "xcb" in ""' problem
-#ENV QT_QPA_PLATFORM=offscreen
-
 # clean up
-RUN conda clean --all
+RUN mamba clean -y --all
 
 ENV IS_DOCKER_8395080871=1
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
