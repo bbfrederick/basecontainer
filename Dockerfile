@@ -30,30 +30,36 @@ RUN apt-get update && \
                     git
 
 # Install and set up the appropriate miniconda for the architecture
-ARG CONDA_VERSION=py311_23.5.2-0
-RUN curl -fso install-conda.sh \
-    https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-$(uname -s)-$(uname -m).sh
-RUN bash install-conda.sh -b -p /usr/local/miniconda
-RUN rm install-conda.sh
+#ARG CONDA_VERSION=py311_23.5.2-0
+#RUN curl -fso install-conda.sh \
+    #https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-$(uname -s)-$(uname -m).sh
+#RUN bash install-conda.sh -b -p /usr/local/miniconda
+#RUN rm install-conda.sh
+
+# Install and set up the appropriate micromamba for the architecture
+RUN curl -fso install-mamba.sh \
+    https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname -s)-$(uname -m).sh
+RUN bash install-mamba.sh -b -p /usr/local/minimamba
+RUN rm install-mamba.sh
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
-ENV PATH="/usr/local/miniconda/bin:$PATH" \
-    CPATH="/usr/local/miniconda/include/:$CPATH" \
+ENV PATH="/usr/local/minimamba/bin:$PATH" \
+    CPATH="/usr/local/minimamba/include/:$CPATH" \
     LANG="C.UTF-8" \
     LC_ALL="C.UTF-8" \
     PYTHONNOUSERSITE=1
 
-# update conda
-RUN conda install conda=23.7.2
+# update mamba
+RUN mamba install mamba
 
 # install conda-build
-RUN conda install -y conda-build
+#RUN conda install -y conda-build
 
 # add the conda-forge channel
-RUN conda config --add channels conda-forge
+#RUN conda config --add channels conda-forge
 
 # Install mamba so we can install packages before the heat death of the universe
-RUN conda install -y "mamba>=1.0" "certifi>=2022.12.07"
+#RUN conda install -y "mamba>=1.0" "certifi>=2022.12.07"
 
 # install a standard set of scientific software
 RUN mamba install -y numpy scipy matplotlib pandas 
