@@ -46,14 +46,14 @@ ENV PATH="/usr/local/miniconda/bin:$PATH" \
 # update conda
 RUN conda install conda=23.7.2
 
+# install conda-build
+RUN conda install -y conda-build
+
 # add the conda-forge channel
 RUN conda config --add channels conda-forge
 
 # Install mamba so we can install packages before the heat death of the universe
 RUN conda install -y "mamba>=1.0" "certifi>=2022.12.07"
-
-# install conda-build
-RUN mamba install -y conda-build
 
 # install a standard set of scientific software
 RUN mamba install -y numpy scipy matplotlib pandas 
