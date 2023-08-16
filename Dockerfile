@@ -38,7 +38,7 @@ RUN apt-get clean
 #RUN rm install-conda.sh
 
 # Install and set up the appropriate micromamba for the architecture
-ARG MABMA_VERSION=23.1.0-4
+ARG MAMBA_VERSION=23.1.0-4
 ARG SYSTYPE=$(uname -s)
 ARG PROCTYPE=$(uname -m)
 RUN curl -fso install-mamba.sh \
