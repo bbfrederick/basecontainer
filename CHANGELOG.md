@@ -1,7 +1,7 @@
 # Release history
 
-## Version 0.2.0 (7/31/23)
-* Install Python 3.11 directly
+## Version 0.2.1 (8/16/23)
+* Switch to using condaforge/mambaforge as the base, which avoids having to download a conda environment and/or install mamba.  The container is much smaller now too.
 
 ## Version 0.1.9 (6/12/23)
 * Updated to Ubuntu 23.10

@@ -68,7 +68,7 @@ ARG VCS_REF
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name="basecontainer" \
-      org.label-schema.description="updated ubuntu python base container for fredericklab containers" \
+      org.label-schema.description="updated mambaforge container for fredericklab containers" \
       org.label-schema.url="http://nirs-fmri.net" \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/bbfrederick/basecontainer" \
