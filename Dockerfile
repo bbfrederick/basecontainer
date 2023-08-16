@@ -29,6 +29,7 @@ RUN apt-get update && \
                     jq \
                     git
 
+RUN apt-get clean
 # Install and set up the appropriate miniconda for the architecture
 #ARG CONDA_VERSION=py311_23.5.2-0
 #RUN curl -fso install-conda.sh \
@@ -70,7 +71,6 @@ RUN mamba install mamba
 RUN mamba install -y numpy scipy matplotlib pandas 
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
-#RUN mamba install -y numba
 RUN mamba install -y versioneer tqdm
 
 # install pyfftw.  Use pip to get around bad conda build
