@@ -46,17 +46,17 @@ RUN echo ${SYSTYPE}
 RUN echo ${PROCTYPE}
 RUN curl -fso install-mamba.sh \
     https://github.com/conda-forge/miniforge/releases/download/${MAMBA_VERSION}/Mambaforge-${MAMBA_VERSION}-$(uname -s)-$(uname -m).sh
-RUN bash install-mamba.sh -b -p /usr/local/minimamba
+RUN bash install-mamba.sh -b
 RUN rm install-mamba.sh
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
-ENV PATH="/usr/local/minimamba/bin:$PATH" \
-    CPATH="/usr/local/minimamba/include/:$CPATH" \
+ENV PATH="${HOME}/opt/mambaforge/bin:$PATH" \
+    CPATH="${HOME}/opt/mambaforge/include/:$CPATH" \
     LANG="C.UTF-8" \
     LC_ALL="C.UTF-8" \
     PYTHONNOUSERSITE=1
 
-RUN ls /usr/local/minimamba
+RUN ls ${HOME}/opt/bin/minimamba
 
 # update mamba
 RUN mamba install mamba
