@@ -41,6 +41,9 @@ RUN apt-get clean
 ARG MAMBA_VERSION=23.1.0-4
 ARG SYSTYPE=$(uname -s)
 ARG PROCTYPE=$(uname -m)
+RUN echo ${MAMBA_VERSION}
+RUN echo ${SYSTYPE}
+RUN echo ${PROCTYPE}
 RUN curl -fso install-mamba.sh \
     https://github.com/conda-forge/miniforge/releases/${MAMBA_VERSION}/download/Mambaforge-${SYSTYPE}-${PROCTYPE}.sh
 RUN bash install-mamba.sh -b -p /usr/local/minimamba
