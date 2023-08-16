@@ -45,7 +45,7 @@ RUN echo ${MAMBA_VERSION}
 RUN echo ${SYSTYPE}
 RUN echo ${PROCTYPE}
 RUN curl -fso install-mamba.sh \
-    https://github.com/conda-forge/miniforge/releases/${MAMBA_VERSION}/download/Mambaforge-${SYSTYPE}-${PROCTYPE}.sh
+    https://github.com/conda-forge/miniforge/releases/download/${MAMBA_VERSION}/Mambaforge-${MAMBA_VERSION}-$(uname -s)-$(uname -m).sh
 RUN bash install-mamba.sh -b -p /usr/local/minimamba
 RUN rm install-mamba.sh
 
