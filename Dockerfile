@@ -58,6 +58,7 @@ RUN mamba install -y requests --force-reinstall
 
 # clean up
 RUN mamba clean -y --all
+RUN pip cache purge
 
 ENV IS_DOCKER_8395080871=1
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
