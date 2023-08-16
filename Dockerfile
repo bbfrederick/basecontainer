@@ -1,11 +1,10 @@
-# Use Ubuntu 23.10
-#FROM ubuntu:23.10
+# Use condaforg/mambaforge to save time getting a fast python environment
 FROM condaforge/mambaforge
 
 # set the shell to bash
 SHELL [ "/bin/bash", "--login", "-c" ]
 
-# Prepare environment
+# Prepare the unix environment
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 RUN apt-get update && \
@@ -25,30 +24,9 @@ RUN apt-get update && \
                     libx11-xcb1 \
                     libxkbcommon-x11-dev \
                     lsb-release \
-                    s3fs \
-                    awscli \
                     jq \
                     git
-
 RUN apt-get clean
-# Install and set up the appropriate miniconda for the architecture
-#ARG CONDA_VERSION=py311_23.5.2-0
-#RUN curl -fso install-conda.sh \
-    #https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-$(uname -s)-$(uname -m).sh
-#RUN bash install-conda.sh -b -p /usr/local/miniconda
-#RUN rm install-conda.sh
-
-# Install and set up the appropriate micromamba for the architecture
-#ARG MAMBA_VERSION=23.1.0-4
-#ARG SYSTYPE=$(uname -s)
-#ARG PROCTYPE=$(uname -m)
-#RUN echo ${MAMBA_VERSION}
-#RUN echo ${SYSTYPE}
-#RUN echo ${PROCTYPE}
-#RUN curl -fso install-mamba.sh \
-    #https://github.com/conda-forge/miniforge/releases/download/${MAMBA_VERSION}/Mambaforge-${MAMBA_VERSION}-$(uname -s)-$(uname -m).sh
-#RUN bash install-mamba.sh -b -p /opt
-#RUN rm install-mamba.sh
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
 ENV PATH="$PATH" \
@@ -57,24 +35,13 @@ ENV PATH="$PATH" \
     LC_ALL="C.UTF-8" \
     PYTHONNOUSERSITE=1
 
-# update mamba
-#RUN mamba install mamba
-
-# install conda-build
-#RUN conda install -y conda-build
-
-# add the conda-forge channel
-#RUN conda config --add channels conda-forge
-
-# Install mamba so we can install packages before the heat death of the universe
-#RUN conda install -y "mamba>=1.0" "certifi>=2022.12.07"
-
 # install a standard set of scientific software
 RUN mamba install -y "python==3.11"
 RUN mamba install -y numpy scipy matplotlib pandas 
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
 RUN mamba install -y versioneer tqdm
+RUN mamba install -y s3fs awscli 
 
 # install pyfftw.  Use pip to get around bad conda build
 #mamba install -y pyfftw \
