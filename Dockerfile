@@ -1,5 +1,6 @@
 # Use Ubuntu 23.10
-FROM ubuntu:23.10
+#FROM ubuntu:23.10
+FROM condaforge/mambaforge
 
 # set the shell to bash
 SHELL [ "/bin/bash", "--login", "-c" ]
@@ -38,29 +39,26 @@ RUN apt-get clean
 #RUN rm install-conda.sh
 
 # Install and set up the appropriate micromamba for the architecture
-ARG MAMBA_VERSION=23.1.0-4
-ARG SYSTYPE=$(uname -s)
-ARG PROCTYPE=$(uname -m)
-RUN echo ${MAMBA_VERSION}
-RUN echo ${SYSTYPE}
-RUN echo ${PROCTYPE}
-RUN curl -fso install-mamba.sh \
-    https://github.com/conda-forge/miniforge/releases/download/${MAMBA_VERSION}/Mambaforge-${MAMBA_VERSION}-$(uname -s)-$(uname -m).sh
-RUN bash install-mamba.sh -b -p /opt
-RUN rm install-mamba.sh
+#ARG MAMBA_VERSION=23.1.0-4
+#ARG SYSTYPE=$(uname -s)
+#ARG PROCTYPE=$(uname -m)
+#RUN echo ${MAMBA_VERSION}
+#RUN echo ${SYSTYPE}
+#RUN echo ${PROCTYPE}
+#RUN curl -fso install-mamba.sh \
+    #https://github.com/conda-forge/miniforge/releases/download/${MAMBA_VERSION}/Mambaforge-${MAMBA_VERSION}-$(uname -s)-$(uname -m).sh
+#RUN bash install-mamba.sh -b -p /opt
+#RUN rm install-mamba.sh
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
-ENV PATH="/opt/bin:$PATH" \
-    CPATH="/opt/include/:$CPATH" \
+ENV PATH="$PATH" \
+    CPATH="$CPATH" \
     LANG="C.UTF-8" \
     LC_ALL="C.UTF-8" \
     PYTHONNOUSERSITE=1
 
-RUN ls /
-RUN ls /opt
-
 # update mamba
-RUN mamba install mamba
+#RUN mamba install mamba
 
 # install conda-build
 #RUN conda install -y conda-build
@@ -72,6 +70,7 @@ RUN mamba install mamba
 #RUN conda install -y "mamba>=1.0" "certifi>=2022.12.07"
 
 # install a standard set of scientific software
+RUN mamba install -y "python==3.11"
 RUN mamba install -y numpy scipy matplotlib pandas 
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
