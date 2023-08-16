@@ -56,7 +56,10 @@ ENV PATH="${HOME}/opt/mambaforge/bin:$PATH" \
     LC_ALL="C.UTF-8" \
     PYTHONNOUSERSITE=1
 
-RUN ls ${HOME}/opt/bin/minimamba
+RUN ls ${HOME}
+RUN ls ${HOME}/opt
+RUN ls ${HOME}/opt/mambaforge
+RUN ls ${HOME}/opt/mambaforge/bin
 
 # update mamba
 RUN mamba install mamba
