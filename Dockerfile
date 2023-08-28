@@ -9,7 +9,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 RUN apt-get update && \
     apt-get install -y tzdata && \
-    apt-get install -y cgroup-bin && \
+    apt-get install -y cgroup-tools && \
     apt-get install -y --no-install-recommends \
                     curl \
                     bzip2 \
