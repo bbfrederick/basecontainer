@@ -25,6 +25,7 @@ RUN apt-get update && \
                     libxkbcommon-x11-dev \
                     lsb-release \
                     jq \
+                    cgroup-bin \
                     git
 RUN apt-get clean
 
