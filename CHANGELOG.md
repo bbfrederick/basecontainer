@@ -1,5 +1,9 @@
 # Release history
 
+## Version 0.2.2 (8/29/23)
+* Add libraries to support reading cgroup information so we can constrain memory on docker containers.
+* Update to python 3.11.4.
+
 ## Version 0.2.1 (8/16/23)
 * Switch to using condaforge/mambaforge as the base, which avoids having to download a conda environment and/or install mamba.  The container is much smaller now too.
 
