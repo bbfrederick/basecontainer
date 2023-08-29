@@ -9,7 +9,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 RUN apt-get update && \
     apt-get install -y tzdata && \
-    apt-get install -y cgroup-tools && \
+    apt-get install -y cgroup-tools cgroup-bin && \
     apt-get install -y --no-install-recommends \
                     curl \
                     bzip2 \
@@ -38,7 +38,7 @@ ENV PATH="$PATH" \
     PYTHONNOUSERSITE=1
 
 # install a standard set of scientific software
-RUN mamba install -y "python==3.11"
+RUN mamba install -y "python==3.11.4"
 RUN mamba install -y numpy scipy matplotlib pandas 
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
