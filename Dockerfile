@@ -9,7 +9,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 RUN apt-get update && \
     apt-get install -y tzdata && \
-    apt-get install -y cgroup-tools cgroup-bin && \
+    apt-get install -y cgroup-tools && \
     apt-get install -y --no-install-recommends \
                     curl \
                     bzip2 \
@@ -43,7 +43,7 @@ RUN mamba install -y numpy scipy matplotlib pandas
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
 RUN mamba install -y versioneer tqdm
-RUN mamba install -y s3fs awscli 
+RUN mamba install -y s3fs awscli cgroupspy
 
 # install pyfftw.  Use pip to get around bad conda build
 #mamba install -y pyfftw \
