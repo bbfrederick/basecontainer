@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.2.3 (9/13/23)
+* Mass merge of a bunch of dependabot PRs.
+
 ## Version 0.2.2 (8/29/23)
 * Add libraries to support reading cgroup information so we can constrain memory on docker containers.
 * Update to python 3.11.4.
