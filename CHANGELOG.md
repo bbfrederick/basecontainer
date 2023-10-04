@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.2.4 (10/4/23)
+* Moved some long installs here from the rapidtide container.
+
 ## Version 0.2.3 (9/13/23)
 * Mass merge of a bunch of dependabot PRs.
 

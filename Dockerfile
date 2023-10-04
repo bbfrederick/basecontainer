@@ -52,11 +52,20 @@ RUN pip install pyfftw
 # install pyqt stuff
 RUN mamba install pyqt pyqt5-sip "pyqtgraph<0.13.0"
 
+# Installing additional precomputed python packages
+# tensorflow seems to really want to install with pip
+RUN mamba install h5py 
+RUN mamba install keras 
+RUN pip install tensorflow
+
 # security patches
 RUN mamba install -y "wheel>=0.38.1" "certifi>=2022.12.07"
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN mamba install -y requests --force-reinstall
+
+# hack to get around the super annoying "urllib3 doesn't match" warning
+RUN pip install --upgrade --force-reinstall requests "certifi>=2023.7.22"
 
 # clean up
 RUN mamba clean -y --all
