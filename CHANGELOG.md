@@ -1,5 +1,9 @@
 # Release history
 
+## Version 0.2.5 (10/7/23)
+* Added memory_profiler to the base installation.
+* Update to python 3.11.6.
+
 ## Version 0.2.4 (10/4/23)
 * Moved some long installs here from the rapidtide container.
 
