@@ -26,6 +26,8 @@ RUN apt-get update && \
                     libxkbcommon-x11-dev \
                     lsb-release \
                     jq \
+                    s3fs \
+                    awscli \
                     git
                      
 RUN apt-get clean
@@ -44,7 +46,7 @@ RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
 RUN mamba install -y versioneer tqdm
 RUN mamba install -y memory_profiler
-RUN mamba install -y s3fs awscli cgroupspy
+RUN mamba install -y cgroupspy
 
 # install pyfftw.  Use pip to get around bad conda build
 #mamba install -y pyfftw \
