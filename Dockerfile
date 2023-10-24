@@ -1,4 +1,4 @@
-# Use condaforg/mambaforge to save time getting a fast python environment
+# Use condaforge/mambaforge to save time getting a fast python environment
 FROM condaforge/mambaforge
 
 # set the shell to bash
