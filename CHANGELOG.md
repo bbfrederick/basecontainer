@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.2.7 (10/25/23)
+* Added nda-tools.
+
 ## Version 0.2.6 (10/24/23)
 * Install s3fs and awscli through apt-get, rather than mamba.
 
