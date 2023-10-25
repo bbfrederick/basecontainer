@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.2.6 (10/24/23)
+* Install s3fs and awscli through apt-get, rather than mamba.
+
 ## Version 0.2.5 (10/7/23)
 * Added memory_profiler to the base installation.
 * Update to python 3.11.6.
