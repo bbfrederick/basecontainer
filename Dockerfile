@@ -70,6 +70,9 @@ RUN mamba install -y requests --force-reinstall
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN pip install --upgrade --force-reinstall requests "certifi>=2023.7.22"
 
+# NDA downloader
+RUN pip install nda-tools keyrings.alt
+
 # clean up
 RUN mamba clean -y --all
 RUN pip cache purge
