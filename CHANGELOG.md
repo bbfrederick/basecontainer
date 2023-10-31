@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.2.8 (10/31/23)
+* Added latest-release tag to latest release, to make rapidtide-cloud happy.
+
 ## Version 0.2.7 (10/25/23)
 * Added nda-tools.
 
