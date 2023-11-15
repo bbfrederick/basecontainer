@@ -53,7 +53,7 @@ RUN mamba install -y cgroupspy
 RUN pip install pyfftw
 
 # install pyqt stuff
-RUN mamba install pyqt pyqt5-sip "pyqtgraph<0.13.0"
+RUN mamba install pyqt pyqt5-sip pyqtgraph
 
 # Installing additional precomputed python packages
 # tensorflow seems to really want to install with pip
