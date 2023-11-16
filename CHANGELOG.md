@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.2.9 (11/16/23)
+* Updated to the latest version of pyqtgraph (0.13.3) now that tidepool and picachooser have been updated.
+
 ## Version 0.2.8 (10/31/23)
 * Added latest-release tag to latest release, to make rapidtide-cloud happy.
 
