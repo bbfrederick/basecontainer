@@ -53,12 +53,12 @@ RUN mamba install -y cgroupspy
 RUN pip install pyfftw
 
 # install pyqt stuff
-RUN mamba install pyqt pyqt5-sip pyqtgraph
+RUN mamba install -y pyqt pyqt5-sip pyqtgraph
 
 # Installing additional precomputed python packages
 # tensorflow seems to really want to install with pip
-RUN mamba install h5py 
-RUN mamba install keras 
+RUN mamba install -y h5py 
+RUN mamba install -y keras 
 RUN pip install tensorflow
 
 # security patches
