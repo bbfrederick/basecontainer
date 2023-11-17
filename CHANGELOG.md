@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.2.9.1 (11/17/23)
+* Added a "-y" to all mamba installs that didn't have them.
+
 ## Version 0.2.9 (11/16/23)
 * Updated to the latest version of pyqtgraph (0.13.3) now that tidepool and picachooser have been updated.
 
