@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.2.9.2 (12/7/23)
+* Rebuild to pick up the new version of nda-tools.
+
 ## Version 0.2.9.1 (11/17/23)
 * Added a "-y" to all mamba installs that didn't have them.
 
