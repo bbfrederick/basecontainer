@@ -1,0 +1,17 @@
+armawrap=0.6.0
+cprob=2111.0 
+misc_c=2111.0
+znzlib=2111.0
+newnifti=4.1.0
+utils=2203.4
+miscmaths=2203.2
+newimage=2203.11
+avwutils=2209.2
+basisfield=2203.1
+meshclass=2111.0
+warpfns=2203.0
+fnirt=2203.0
+fugue=2201.3
+fast4=2111.3
+flirt=2111.2
+flirt=2111.2
