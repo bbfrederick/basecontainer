@@ -6,7 +6,7 @@ set -ex
 # docker hub username
 USERNAME=fredericklab
 # image name
-IMAGE=basecontainer_plus
+IMAGE=basecontainer
 
 # ensure we're up to date
 git pull
