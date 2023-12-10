@@ -8,6 +8,7 @@ SHELL [ "/bin/bash", "--login", "-c" ]
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 RUN apt-get update && \
+    apt update && \
     apt-get install -y tzdata && \
     apt-get install -y cgroup-tools && \
     apt-get install -y --no-install-recommends \
@@ -30,6 +31,7 @@ RUN apt-get update && \
                     awscli \
                     git
                      
+RUN apt install -y vim
 RUN apt-get clean
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
@@ -74,7 +76,7 @@ RUN pip install --upgrade --force-reinstall requests "certifi>=2023.7.22"
 RUN pip install nda-tools keyrings.alt
 
 # clean up
-RUN mamba clean -y --all
+#RUN mamba clean --packages
 RUN pip cache purge
 
 ENV IS_DOCKER_8395080871=1
