@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.3.0 (12/11/23)
+* Add vim to container to facilitate debugging.
+
 ## Version 0.2.9.2 (12/7/23)
 * Rebuild to pick up the new version of nda-tools.
 
