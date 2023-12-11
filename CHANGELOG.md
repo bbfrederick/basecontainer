@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.3.1 (12/11/23)
+* Added caching to build.
+
 ## Version 0.3.0 (12/11/23)
 * Add vim to container to facilitate debugging.
 
