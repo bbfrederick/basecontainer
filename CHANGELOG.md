@@ -1,5 +1,9 @@
 # Release history
 
+## Version 0.3.2 (2/18/24)
+* Install pyarrow to resolve a dependency with pandas.
+* Increment python version to 3.11.7
+
 ## Version 0.3.1 (12/11/23)
 * Added caching to build.
 
