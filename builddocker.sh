@@ -23,7 +23,8 @@ docker buildx build . \
     --tag $USERNAME/$IMAGE:latest --tag $USERNAME/$IMAGE:$version \
     --build-arg VERSION=$version \
     --build-arg BUILD_DATE=`date +"%Y%m%dT%H%M%S"` \
-    --build-arg VCS_REF=`git rev-parse HEAD` --push
+    --build-arg VCS_REF=`git rev-parse HEAD`
+#--push
 
 docker buildx build . \
     --platform linux/amd64 \
@@ -31,4 +32,5 @@ docker buildx build . \
     --tag $USERNAME/$IMAGE:latest --tag $USERNAME/$IMAGE:$version \
     --build-arg VERSION=$version \
     --build-arg BUILD_DATE=`date +"%Y%m%dT%H%M%S"` \
-    --build-arg VCS_REF=`git rev-parse HEAD` --push
+    --build-arg VCS_REF=`git rev-parse HEAD` 
+#--push

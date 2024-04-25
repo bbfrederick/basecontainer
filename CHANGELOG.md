@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.3.5 (4/25/24)
+* Undid build stages, moved versioneer back to mamba.
+
 ## Version 0.3.4 (4/25/24)
 * Moved versioneer installation to pip from mamba.
 

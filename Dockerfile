@@ -1,5 +1,5 @@
 # Use condaforge/mambaforge to save time getting a fast python environment
-FROM condaforge/mambaforge AS base
+FROM condaforge/mambaforge 
 
 # set the shell to bash
 SHELL [ "/bin/bash", "--login", "-c" ]
@@ -32,7 +32,6 @@ RUN apt-get update && \
                     git
                      
 
-FROM base AS stage1
 RUN apt install -y vim
 RUN apt-get clean
 
@@ -44,59 +43,44 @@ ENV PATH="$PATH" \
     PYTHONNOUSERSITE=1
 
 # install a standard set of scientific software
-FROM base AS stage2a
 RUN mamba install -y "python==3.11.8"
-FROM base AS stage2b
 RUN mamba install -y numpy scipy matplotlib pandas pyarrow
-FROM base AS stage2c
 RUN mamba install -y scikit-image scikit-learn nilearn
-FROM base AS stage2d
 RUN mamba install -y statsmodels nibabel
-FROM base AS stage2e
 RUN mamba install -y tqdm
-FROM base AS stage2f
 RUN mamba install -y memory_profiler
-FROM base AS stage2g
 RUN mamba install -y cgroupspy
+RUN mamba install -y versioneer
 
 # install pyqt stuff
-FROM base AS stage3
 RUN mamba install pyqt pyqt5-sip pyqtgraph
 
 # Installing additional precomputed python packages
 # tensorflow seems to really want to install with pip
-FROM base AS stage4a
 RUN mamba install h5py 
-FROM base AS stage4b
 RUN mamba install keras 
-FROM base AS stage4c
 RUN pip install tensorflow
-FROM base AS stage4d
-RUN pip install versioneer
 
 # security patches
-FROM base AS stage5
 RUN mamba install -y "wheel>=0.38.1" "certifi>=2022.12.07"
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
-FROM base AS stage6
 RUN mamba install -y requests --force-reinstall
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
-FROM base AS stage7
 RUN pip install --upgrade --force-reinstall requests "certifi>=2023.7.22"
 
 # NDA downloader
-FROM base AS stage8
 RUN pip install nda-tools keyrings.alt
 
 # clean up
 #RUN mamba clean --packages
-FROM base AS stage9
 RUN pip cache purge
 
 ENV IS_DOCKER_8395080871=1
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN cd /root; TZ=GMT date "+%Y-%m-%d %H:%M:%S" > buildtime-basecontainer
 
 ARG VERSION
 ARG BUILD_DATE
