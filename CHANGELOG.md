@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.3.4 (4/25/24)
+* Moved versioneer installation to pip from mamba.
+
 ## Version 0.3.3 (4/25/24)
 * Updated to python 3.11.8
 * Removed pyfftw
