@@ -1,5 +1,10 @@
 # Release history
 
+## Version 0.3.3 (4/25/24)
+* Updated to python 3.11.8
+* Removed pyfftw
+* Tweaked free space
+
 ## Version 0.3.2 (2/18/24)
 * Install pyarrow to resolve a dependency with pandas.
 * Increment python version to 3.11.7
