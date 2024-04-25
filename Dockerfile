@@ -53,7 +53,7 @@ RUN mamba install -y scikit-image scikit-learn nilearn
 FROM base AS stage2d
 RUN mamba install -y statsmodels nibabel
 FROM base AS stage2e
-RUN mamba install -y versioneer tqdm
+RUN mamba install -y tqdm
 FROM base AS stage2f
 RUN mamba install -y memory_profiler
 FROM base AS stage2g
@@ -65,10 +65,14 @@ RUN mamba install pyqt pyqt5-sip pyqtgraph
 
 # Installing additional precomputed python packages
 # tensorflow seems to really want to install with pip
-FROM base AS stage4
+FROM base AS stage4a
 RUN mamba install h5py 
+FROM base AS stage4b
 RUN mamba install keras 
+FROM base AS stage4c
 RUN pip install tensorflow
+FROM base AS stage4d
+RUN pip install versioneer
 
 # security patches
 FROM base AS stage5
