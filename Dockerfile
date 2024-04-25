@@ -50,10 +50,6 @@ RUN mamba install -y versioneer tqdm
 RUN mamba install -y memory_profiler
 RUN mamba install -y cgroupspy
 
-# install pyfftw.  Use pip to get around bad conda build
-#mamba install -y pyfftw \
-RUN pip install pyfftw
-
 # install pyqt stuff
 RUN mamba install pyqt pyqt5-sip pyqtgraph
 
