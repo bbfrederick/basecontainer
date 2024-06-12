@@ -43,7 +43,7 @@ ENV PATH="$PATH" \
     PYTHONNOUSERSITE=1
 
 # install a standard set of scientific software
-RUN mamba install -y "python==3.11.8"
+RUN mamba install -y "python==3.12.3"
 RUN mamba install -y numpy scipy matplotlib pandas pyarrow
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
@@ -62,7 +62,7 @@ RUN mamba install keras
 RUN pip install tensorflow
 
 # security patches
-RUN mamba install -y "wheel>=0.38.1" "certifi>=2022.12.07"
+RUN mamba install -y "wheel>=0.41.1" "certifi>=2023.7.22"
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN mamba install -y requests --force-reinstall

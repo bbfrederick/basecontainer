@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.3.6 (6/12/24)
+* Update to python 3.12.2
+
 ## Version 0.3.5 (4/25/24)
 * Undid build stages, moved versioneer back to mamba.
 
