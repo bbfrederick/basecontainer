@@ -63,7 +63,7 @@ RUN pip install tensorflow
 
 # security patches
 RUN mamba install -y "wheel>=0.41.1"
-RUN mamba install -y "certifi>=2024.7.4"
+#RUN mamba install -y "certifi>=2024.7.4"
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN mamba install -y requests --force-reinstall
