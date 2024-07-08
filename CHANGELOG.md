@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.3.7 (7/8/24)
+* Update certifi to 2024.7.4 or greater (security patch)
+
 ## Version 0.3.6 (6/12/24)
 * Update to python 3.12.3
 
