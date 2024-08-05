@@ -48,7 +48,7 @@ RUN mamba install -y numpy scipy matplotlib pandas pyarrow
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
 RUN mamba install -y tqdm
-RUN mamba install -y pyyaml
+RUN mamba install -y tomlkit
 RUN mamba install -y memory_profiler
 RUN mamba install -y cgroupspy
 RUN mamba install -y versioneer
