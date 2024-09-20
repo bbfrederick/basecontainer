@@ -31,13 +31,11 @@ RUN apt-get update && \
                     awscli \
                     git
                      
-
 RUN apt install -y vim
 RUN apt-get clean
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
 ENV PATH="$PATH" \
-    CPATH="$CPATH" \
     LANG="C.UTF-8" \
     LC_ALL="C.UTF-8" \
     PYTHONNOUSERSITE=1
