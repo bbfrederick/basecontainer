@@ -44,6 +44,7 @@ ENV PATH="$PATH" \
 
 # install a standard set of scientific software
 RUN mamba install -y "python==3.12.5"
+RUN mamba install -y uv
 RUN mamba install -y numpy scipy matplotlib pandas pyarrow
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
@@ -54,12 +55,12 @@ RUN mamba install -y cgroupspy
 RUN mamba install -y versioneer
 
 # install pyqt stuff
-RUN mamba install pyqt pyqt5-sip pyqtgraph
+RUN mamba install -y pyqt pyqt5-sip pyqtgraph
 
 # Installing additional precomputed python packages
 # tensorflow seems to really want to install with pip
-RUN mamba install h5py 
-RUN mamba install keras 
+RUN mamba install -y h5py 
+RUN mamba install -y keras 
 RUN pip install tensorflow
 
 # security patches
