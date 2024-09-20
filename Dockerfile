@@ -1,5 +1,5 @@
 # Use condaforge/mambaforge to save time getting a fast python environment
-FROM condaforge/mambaforge 
+FROM condaforge/mambaforge:latest
 
 # set the shell to bash
 SHELL [ "/bin/bash", "--login", "-c" ]
@@ -43,7 +43,7 @@ ENV PATH="$PATH" \
     PYTHONNOUSERSITE=1
 
 # install a standard set of scientific software
-RUN mamba install -y "python==3.12.4"
+RUN mamba install -y "python==3.12.6"
 RUN mamba install -y numpy scipy matplotlib pandas pyarrow
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
@@ -63,14 +63,13 @@ RUN mamba install keras
 RUN pip install tensorflow
 
 # security patches
-RUN mamba install -y "wheel>=0.41.1"
-#RUN mamba install -y "certifi>=2024.7.4"
+RUN mamba install -y "wheel>=0.44.0"
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN mamba install -y requests --force-reinstall
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
-RUN pip install --upgrade --force-reinstall requests "certifi>=2024.7.4"
+RUN pip install --upgrade --force-reinstall requests "certifi>=2024.8.30"
 
 # NDA downloader
 RUN pip install nda-tools keyrings.alt
