@@ -43,7 +43,7 @@ ENV PATH="$PATH" \
     PYTHONNOUSERSITE=1
 
 # install a standard set of scientific software
-RUN mamba install -y "python==3.12.6"
+RUN mamba install -y "python==3.12.5"
 RUN mamba install -y numpy scipy matplotlib pandas pyarrow
 RUN mamba install -y scikit-image scikit-learn nilearn
 RUN mamba install -y statsmodels nibabel
