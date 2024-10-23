@@ -1,5 +1,5 @@
-# Use slim-bullseye as a base
-FROM python:3.12-slim-bullseye
+# Use condaforge/mambaforge to save time getting a fast python environment
+FROM condaforge/mambaforge:latest
 
 # set the shell to bash
 SHELL [ "/bin/bash", "--login", "-c" ]
@@ -7,11 +7,11 @@ SHELL [ "/bin/bash", "--login", "-c" ]
 # Prepare the unix environment
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
-RUN apt-get update --fix-missing && \
+RUN apt-get update && \
     apt update && \
     apt-get install -y tzdata && \
-    apt-get install -y cgroup-tools
-RUN apt-get install -y --no-install-recommends \
+    apt-get install -y cgroup-tools && \
+    apt-get install -y --no-install-recommends \
                     curl \
                     bzip2 \
                     ca-certificates \
@@ -20,8 +20,7 @@ RUN apt-get install -y --no-install-recommends \
                     autoconf \
                     libtool \
                     gnupg \
-                    pkg-config 
-RUN apt-get install -y --no-install-recommends \
+                    pkg-config \
                     xterm \
                     libgl1-mesa-glx \
                     libx11-xcb1 \
@@ -42,45 +41,40 @@ ENV PATH="$PATH" \
     PYTHONNOUSERSITE=1
 
 # install a standard set of scientific software
-RUN pip install uv
-RUN uv pip install --system \
-        numpy \
-        scipy \
-        matplotlib \
-        pandas \
-        pyarrow \
-        scikit-image \
-        scikit-learn \
-        nilearn \
-        statsmodels \
-        nibabel \
-        tqdm \
-        memory_profiler \
-        cgroupspy \
-        versioneer
+RUN mamba install -y "python==3.12.5"
+#RUN mamba install -y uv
+RUN mamba install -y numpy scipy matplotlib pandas pyarrow
+RUN mamba install -y scikit-image scikit-learn nilearn
+RUN mamba install -y statsmodels nibabel
+RUN mamba install -y tqdm
+#RUN mamba install -y tomlkit
+RUN mamba install -y memory_profiler
+RUN mamba install -y cgroupspy
+RUN mamba install -y versioneer
 
 # install pyqt stuff
-#RUN uv pip install --system pyqt5
-RUN uv pip install --system pyqt5-sip pyqtgraph
+RUN mamba install -y pyqt pyqt5-sip pyqtgraph
 
 # Installing additional precomputed python packages
 # tensorflow seems to really want to install with pip
-RUN uv pip install --system h5py keras tensorflow
+RUN mamba install -y h5py 
+RUN mamba install -y keras 
+RUN pip install tensorflow
 
 # security patches
-RUN uv pip install --system "wheel>=0.44.0"
+RUN mamba install -y "wheel>=0.44.0"
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
-RUN pip install requests --force-reinstall
+RUN mamba install -y requests --force-reinstall
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN pip install --upgrade --force-reinstall requests "certifi>=2024.8.30"
 
 # NDA downloader
-RUN uv pip install --system nda-tools keyrings.alt
+RUN pip install nda-tools keyrings.alt
 
 # clean up
-#RUN pip clean --packages
+#RUN mamba clean --packages
 RUN pip cache purge
 
 ENV IS_DOCKER_8395080871=1
