@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.3.8 (10/23/24)
+* Removed uv and tomlkit
+
 ## Version 0.3.7 (7/8/24)
 * Update certifi to 2024.7.4 or greater (security patch)
 
