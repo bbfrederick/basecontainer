@@ -31,6 +31,8 @@ RUN apt-get install -y --no-install-recommends \
                     s3fs \
                     awscli \
                     git
+RUN apt-get install -y --no-install-recommends \
+                    qtbase5-dev
                      
 RUN apt install -y vim
 RUN apt-get clean
@@ -60,8 +62,8 @@ RUN uv pip install --system \
         versioneer
 
 # install pyqt stuff
-#RUN uv pip install --system pyqt5
 RUN uv pip install --system pyqt5-sip pyqtgraph
+#RUN uv pip install --system pyqt5
 
 # Installing additional precomputed python packages
 # tensorflow seems to really want to install with pip
