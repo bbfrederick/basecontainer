@@ -79,6 +79,9 @@ RUN pip install --upgrade --force-reinstall requests "certifi>=2024.8.30"
 # NDA downloader
 RUN uv pip install --system nda-tools keyrings.alt
 
+# install mamba to have it around
+RUN uv pip install --system mamba
+
 # clean up
 #RUN pip clean --packages
 RUN pip cache purge
