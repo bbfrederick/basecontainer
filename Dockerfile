@@ -23,25 +23,27 @@ RUN apt-get install -y --no-install-recommends \
                     pkg-config 
 RUN apt-get install -y --no-install-recommends \
                     xterm \
-                    libgl1-mesa-glx \
-                    libx11-xcb1 \
-                    libxkbcommon-x11-dev \
                     lsb-release \
                     jq \
                     s3fs \
                     awscli \
                     git
-RUN apt-get install -y --no-install-recommends \
-                    qtcreator qtbase5-dev qt5-qmake cmake
-                     
+RUN apt-get install -y \
+                    libx11-xcb1 \
+                    libxcb-xinerama0 \
+                    libxkbcommon-x11-dev \
+                    libgl1-mesa-glx \
+                    libegl1-mesa-dev \
+                    libdbus-1-dev libdbus-glib-1-dev
+
 RUN apt install -y vim
 RUN apt-get clean
 
 ## install mamba to have it around
 RUN cd /root; curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
-RUN cd /root; /bin/bash Miniforge3-$(uname)-$(uname -m).sh -b -p /miniforge3
+RUN cd /root; /bin/bash Miniforge3-$(uname)-$(uname -m).sh -b -p /opt/miniforge3
 RUN cd /root; rm -f Miniforge3-$(uname)-$(uname -m).sh
-RUN /miniforge3/bin/mamba init
+RUN /opt/miniforge3/bin/mamba init
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
 ENV PATH="$PATH" \
@@ -49,9 +51,14 @@ ENV PATH="$PATH" \
     LC_ALL="C.UTF-8" \
     PYTHONNOUSERSITE=1
 
-# install a standard set of scientific software
+# make a scientific software environment
+RUN /opt/miniforge3/bin/mamba create -n science python==$(python --version | awk '{print $2}') pip mamba
+RUN echo "mamba activate science" >> ~/.bashrc
+RUN mamba activate science
+
+# now install a standard set of scientific software
 RUN pip install uv
-RUN uv pip install --system \
+RUN uv pip install \
         numpy \
         scipy \
         matplotlib \
@@ -68,14 +75,13 @@ RUN uv pip install --system \
         versioneer
 
 # install pyqt stuff
-RUN uv pip install --system pyqt5-sip pyqtgraph
-#RUN uv pip install --system pyqt5
+RUN uv pip install PyQt6 pyqtgraph
 
 # Installing additional precomputed python packages
-RUN uv pip install --system h5py keras tensorflow
+RUN uv pip install h5py keras tensorflow
 
 # security patches
-RUN uv pip install --system "wheel>=0.44.0"
+RUN uv pip install "wheel>=0.44.0"
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN pip install requests --force-reinstall
@@ -84,8 +90,7 @@ RUN pip install requests --force-reinstall
 RUN pip install --upgrade --force-reinstall requests "certifi>=2024.8.30"
 
 # NDA downloader
-RUN uv pip install --system nda-tools keyrings.alt
-
+RUN uv pip install nda-tools keyrings.alt
 
 # clean up
 RUN pip cache purge
@@ -95,8 +100,11 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN cd /root; TZ=GMT date "+%Y-%m-%d %H:%M:%S" > buildtime-basecontainer
 
-RUN useradd -ms /bin/bash default
+# make a non-root user
+RUN useradd -m -s /bin/bash default
 #USER default
+#RUN /opt/miniforge3/bin/mamba init
+#RUN echo "mamba activate science" >> ~/.bashrc
 
 ARG VERSION
 ARG BUILD_DATE
