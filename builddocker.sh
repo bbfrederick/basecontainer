@@ -19,18 +19,20 @@ echo "version: $version"
 # run build
 docker buildx build . \
     --platform linux/arm64 \
-    -t $IMAGE \
-    --tag $USERNAME/$IMAGE:latest --tag $USERNAME/$IMAGE:$version \
+    --tag $USERNAME/$IMAGE:latest \
     --build-arg VERSION=$version \
     --build-arg BUILD_DATE=`date +"%Y%m%dT%H%M%S"` \
     --build-arg VCS_REF=`git rev-parse HEAD`
-#--push
+#    --push
+#    --tag $IMAGE \
+#    --tag $USERNAME/$IMAGE:$version \
 
 docker buildx build . \
     --platform linux/amd64 \
-    -t $IMAGE \
-    --tag $USERNAME/$IMAGE:latest --tag $USERNAME/$IMAGE:$version \
+    --tag $USERNAME/$IMAGE:latest \
     --build-arg VERSION=$version \
     --build-arg BUILD_DATE=`date +"%Y%m%dT%H%M%S"` \
-    --build-arg VCS_REF=`git rev-parse HEAD` 
-#--push
+    --build-arg VCS_REF=`git rev-parse HEAD`
+#    --push
+#    --tag $IMAGE \
+#    --tag $USERNAME/$IMAGE:$version \

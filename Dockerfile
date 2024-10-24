@@ -32,10 +32,16 @@ RUN apt-get install -y --no-install-recommends \
                     awscli \
                     git
 RUN apt-get install -y --no-install-recommends \
-                    qtbase5-dev
+                    qtcreator qtbase5-dev qt5-qmake cmake
                      
 RUN apt install -y vim
 RUN apt-get clean
+
+## install mamba to have it around
+RUN cd /root; curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+RUN cd /root; /bin/bash Miniforge3-$(uname)-$(uname -m).sh -b -p /miniforge3
+RUN cd /root; rm -f Miniforge3-$(uname)-$(uname -m).sh
+RUN /miniforge3/bin/mamba init
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
 ENV PATH="$PATH" \
@@ -66,7 +72,6 @@ RUN uv pip install --system pyqt5-sip pyqtgraph
 #RUN uv pip install --system pyqt5
 
 # Installing additional precomputed python packages
-# tensorflow seems to really want to install with pip
 RUN uv pip install --system h5py keras tensorflow
 
 # security patches
@@ -81,17 +86,17 @@ RUN pip install --upgrade --force-reinstall requests "certifi>=2024.8.30"
 # NDA downloader
 RUN uv pip install --system nda-tools keyrings.alt
 
-# install mamba to have it around
-RUN uv pip install --system mamba
 
 # clean up
-#RUN pip clean --packages
 RUN pip cache purge
 
 ENV IS_DOCKER_8395080871=1
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN cd /root; TZ=GMT date "+%Y-%m-%d %H:%M:%S" > buildtime-basecontainer
+
+RUN useradd -ms /bin/bash default
+#USER default
 
 ARG VERSION
 ARG BUILD_DATE
