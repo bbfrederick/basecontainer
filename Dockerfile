@@ -29,12 +29,19 @@ RUN apt-get install -y --no-install-recommends \
                     awscli \
                     git
 RUN apt-get install -y \
-                    libx11-xcb1 \
-                    libxcb-xinerama0 \
-                    libxkbcommon-x11-dev \
-                    libgl1-mesa-glx \
+                    libdbus-1-dev \
+                    libdbus-glib-1-dev \
                     libegl1-mesa-dev \
-                    libdbus-1-dev libdbus-glib-1-dev
+                    libgl1-mesa-glx \
+                    libglu1-mesa-dev \
+                    libx11-xcb1 \
+                    libx11-xcb-dev \
+                    libxi-dev \
+                    '^libxcb.*-dev' \
+                    libxcb-xinerama0 \
+                    libxkbcommon-dev \
+                    libxkbcommon-x11-dev \
+                    libxrender-dev
 
 RUN apt install -y vim
 RUN apt-get clean
@@ -54,6 +61,7 @@ ENV PATH="$PATH" \
 # make a scientific software environment
 RUN /opt/miniforge3/bin/mamba create -n science python==$(python --version | awk '{print $2}') pip mamba
 RUN echo "mamba activate science" >> ~/.bashrc
+#RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.bashrc
 RUN mamba activate science
 
 # now install a standard set of scientific software
