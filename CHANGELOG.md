@@ -1,7 +1,11 @@
 # Release history
 
 ## Version 0.3.8 (10/23/24)
-* Removed uv and tomlkit
+* Converted to python:3.12-slim-bullseye base image from mamba forge.
+* Use uv to install all python packages.
+* Install mamba separately to support FSL installation in basecontainer_plus.
+* Removed pyyaml.
+* Reduced the image size significantly (almost 50%).
 
 ## Version 0.3.7 (7/8/24)
 * Update certifi to 2024.7.4 or greater (security patch)

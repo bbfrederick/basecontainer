@@ -108,11 +108,17 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN cd /root; TZ=GMT date "+%Y-%m-%d %H:%M:%S" > buildtime-basecontainer
 
-# make a non-root user
-RUN useradd -m -s /bin/bash default
-#USER default
-#RUN /opt/miniforge3/bin/mamba init
-#RUN echo "mamba activate science" >> ~/.bashrc
+# make a non-root user and switch to them
+ENV USER=default
+RUN useradd \
+    --create-home \
+    --shell /bin/bash \
+    --groups users \
+    --home /home/$USER \
+    $USER
+USER $USER
+RUN /opt/miniforge3/bin/mamba init
+RUN echo "mamba activate science" >> ~/.bashrc
 
 ARG VERSION
 ARG BUILD_DATE
