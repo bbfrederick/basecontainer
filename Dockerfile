@@ -1,5 +1,5 @@
 # Use slim-bullseye as a base
-FROM python:3.12-slim-bullseye
+FROM python:3.13-slim-bullseye
 
 # set the shell to bash
 SHELL [ "/bin/bash", "--login", "-c" ]
