@@ -9,3 +9,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    ignore:
+      # Ignore updates to the starting container that would
+      # change the version of python
+      - dependency-name: "*-slim-bullseye"
