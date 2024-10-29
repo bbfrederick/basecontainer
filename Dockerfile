@@ -13,6 +13,7 @@ RUN apt-get update --fix-missing && \
     apt-get install -y cgroup-tools
 RUN apt-get install -y --no-install-recommends \
                     curl \
+                    wget \
                     bzip2 \
                     ca-certificates \
                     xvfb \
@@ -42,6 +43,12 @@ RUN apt-get install -y \
                     libxkbcommon-dev \
                     libxkbcommon-x11-dev \
                     libxrender-dev
+RUN apt-get install -y \
+                    libgtk2.0-0 \
+                    libgomp1
+RUN apt-get install -y \
+                    dc \
+                    file
 RUN apt-get upgrade -y python3
 RUN apt-get autoremove
 
