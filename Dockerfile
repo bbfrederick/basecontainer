@@ -74,6 +74,7 @@ RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.login
 RUN echo "mamba activate science" >> ~/.login
 RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.bashrc
 RUN echo "mamba activate science" >> ~/.bashrc
+ENV PYTHONENVBIN=/opt/miniforge3/envs/science/bin
 
 # now install a standard set of scientific software
 RUN pip install uv
