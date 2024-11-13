@@ -70,9 +70,11 @@ ENV PATH="$PATH" \
 
 # make a scientific software environment
 RUN /opt/miniforge3/bin/mamba create -n science python==$(python --version | awk '{print $2}') pip mamba
-#RUN mamba create -n science python==$(python --version | awk '{print $2}') pip mamba
-RUN echo "mamba activate science" >> ~/.bashrc
-#RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.bashrc
+RUN echo "export PATH='/opt/miniforge3/envs/science/bin:/opt/miniforge3/bin:$PATH'" >> ~/.login
+RUN echo "mamba activate science" >> ~/.login
+#RUN echo "export PATH='/opt/miniforge3/envs/science/bin:/opt/miniforge3/bin:$PATH'" >> ~/.bashrc
+#RUN echo "mamba activate science" >> ~/.bashrc
+RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.bashrc
 
 # now install a standard set of scientific software
 RUN pip install uv
