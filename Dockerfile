@@ -53,15 +53,14 @@ RUN apt-get install -y \
 RUN apt-get upgrade -y python3
 RUN apt-get autoremove
 
+# install vim so we can debug the container
 RUN apt install -y vim
-RUN apt-get clean
 
 ## install mamba to have it around
 RUN cd /root; curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 RUN cd /root; /bin/bash Miniforge3-$(uname)-$(uname -m).sh -b -p /opt/miniforge3
 RUN cd /root; rm -f Miniforge3-$(uname)-$(uname -m).sh
 RUN /opt/miniforge3/bin/mamba init
-#RUN conda init
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
 ENV PATH="$PATH" \
@@ -113,23 +112,24 @@ RUN uv pip install nda-tools keyrings.alt
 
 # clean up
 RUN pip cache purge
+RUN mamba clean --all
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV IS_DOCKER_8395080871=1
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN cd /root; TZ=GMT date "+%Y-%m-%d %H:%M:%S" > buildtime-basecontainer
 
 # make a non-root user and switch to them
-ENV USER=default
-RUN useradd \
-    --create-home \
-    --shell /bin/bash \
-    --groups users \
-    --home /home/$USER \
-    $USER
-USER $USER
-RUN /opt/miniforge3/bin/mamba init
-RUN echo "mamba activate science" >> ~/.bashrc
+#ENV USER=default
+#RUN useradd \
+#    --create-home \
+#    --shell /bin/bash \
+#    --groups users \
+#    --home /home/$USER \
+#    $USER
+#USER $USER
+#RUN /opt/miniforge3/bin/mamba init
+#RUN echo "mamba activate science" >> ~/.bashrc
 
 ARG VERSION
 ARG BUILD_DATE
@@ -137,7 +137,7 @@ ARG VCS_REF
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name="basecontainer" \
-      org.label-schema.description="updated mambaforge container for fredericklab containers" \
+      org.label-schema.description="scientific python/mamba/uv base container for fredericklab containers" \
       org.label-schema.url="http://nirs-fmri.net" \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/bbfrederick/basecontainer" \
