@@ -1,5 +1,6 @@
 # Use slim-bullseye as a base
-FROM python:3.12-slim-bullseye
+FROM python:3.12-slim-bullseye AS builder
+#FROM condaforge/mambaforge:latest
 
 # set the shell to bash
 SHELL [ "/bin/bash", "--login", "-c" ]
@@ -11,6 +12,8 @@ RUN apt-get update --fix-missing && \
     apt update && \
     apt-get install -y tzdata && \
     apt-get install -y cgroup-tools
+
+FROM builder AS stage1
 RUN apt-get install -y --no-install-recommends \
                     curl \
                     wget \
@@ -22,6 +25,7 @@ RUN apt-get install -y --no-install-recommends \
                     libtool \
                     gnupg \
                     pkg-config 
+FROM builder AS stage2
 RUN apt-get install -y --no-install-recommends \
                     xterm \
                     lsb-release \
@@ -29,6 +33,7 @@ RUN apt-get install -y --no-install-recommends \
                     s3fs \
                     awscli \
                     git
+FROM builder AS stage3
 RUN apt-get install -y \
                     libdbus-1-dev \
                     libdbus-glib-1-dev \
@@ -43,12 +48,14 @@ RUN apt-get install -y \
                     libxkbcommon-dev \
                     libxkbcommon-x11-dev \
                     libxrender-dev
+FROM builder AS stage4
 RUN apt-get install -y \
                     libgtk2.0-0 \
                     libgomp1
 RUN apt-get install -y \
                     dc \
                     file
+FROM builder AS stage5
 RUN apt-get upgrade -y python3
 RUN apt-get autoremove
 
@@ -56,10 +63,12 @@ RUN apt install -y vim
 RUN apt-get clean
 
 ## install mamba to have it around
+FROM builder AS stage6
 RUN cd /root; curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 RUN cd /root; /bin/bash Miniforge3-$(uname)-$(uname -m).sh -b -p /opt/miniforge3
 RUN cd /root; rm -f Miniforge3-$(uname)-$(uname -m).sh
 RUN /opt/miniforge3/bin/mamba init
+#RUN conda init
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
 ENV PATH="$PATH" \
@@ -68,12 +77,14 @@ ENV PATH="$PATH" \
     PYTHONNOUSERSITE=1
 
 # make a scientific software environment
+FROM builder AS stage7
 RUN /opt/miniforge3/bin/mamba create -n science python==$(python --version | awk '{print $2}') pip mamba
+#RUN mamba create -n science python==$(python --version | awk '{print $2}') pip mamba
 RUN echo "mamba activate science" >> ~/.bashrc
 #RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.bashrc
-RUN mamba activate science
 
 # now install a standard set of scientific software
+FROM builder AS stage8
 RUN pip install uv
 RUN uv pip install \
         numpy \
@@ -92,9 +103,11 @@ RUN uv pip install \
         versioneer
 
 # install pyqt stuff
+FROM builder AS stage9
 RUN uv pip install PyQt6 pyqtgraph
 
 # Installing additional precomputed python packages
+FROM builder AS stage10
 RUN uv pip install h5py keras tensorflow
 
 # security patches
@@ -107,6 +120,7 @@ RUN pip install requests --force-reinstall
 RUN pip install --upgrade --force-reinstall requests "certifi>=2024.8.30"
 
 # NDA downloader
+FROM builder AS stage11
 RUN uv pip install nda-tools keyrings.alt
 
 # clean up
