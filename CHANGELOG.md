@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.3.9 (11/13/24)
+* Some improved cleanup, exit as root
+
 ## Version 0.3.8 (10/23/24)
 * Converted to python:3.12-slim-bullseye base image from mamba forge.
 * Use uv to install all python packages.
