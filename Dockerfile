@@ -73,8 +73,8 @@ RUN apt-get install -y \
 RUN apt-get upgrade -y python3
 RUN apt-get autoremove
 
-# install vim so we can debug the container
-RUN apt install -y vim
+# install vim and mg so we can debug the container
+RUN apt install -y vim mg
 
 ## install mamba to have it around
 RUN cd /root; curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
