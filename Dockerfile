@@ -69,6 +69,7 @@ RUN apt-get install -y \
                     libgomp1
 RUN apt-get install -y \
                     dc \
+                    procps \
                     file
 RUN apt-get upgrade -y python3
 RUN apt-get autoremove
