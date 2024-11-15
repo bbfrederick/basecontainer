@@ -138,21 +138,9 @@ RUN pip cache purge
 RUN mamba clean --all
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV IS_DOCKER_8395080871=1
+ENV IN_DOCKER_CONTAINER=1
 
 RUN cd /root; TZ=GMT date "+%Y-%m-%d %H:%M:%S" > buildtime-basecontainer
-
-# make a non-root user and switch to them
-#ENV USER=default
-#RUN useradd \
-#    --create-home \
-#    --shell /bin/bash \
-#    --groups users \
-#    --home /home/$USER \
-#    $USER
-#USER $USER
-#RUN /opt/miniforge3/bin/mamba init
-#RUN echo "mamba activate science" >> ~/.bashrc
 
 ARG VERSION
 ARG BUILD_DATE
