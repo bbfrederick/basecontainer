@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.4.0 (11/15/24)
+* Fixed path, added procps now works as base for rapidtide (without FSL).
+
 ## Version 0.3.9 (11/13/24)
 * Some improved cleanup, exit as root
 
