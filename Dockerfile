@@ -81,6 +81,9 @@ RUN apt-get upgrade -y
 RUN apt-get autoremove
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# update the debian versions of these packages
+RUN pip install "cryptography>=42.0.4" "urllib3>=1.26.17"
+
 ## install mamba to have it around
 RUN cd /root; curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 RUN cd /root; /bin/bash Miniforge3-$(uname)-$(uname -m).sh -b -p /opt/miniforge3
