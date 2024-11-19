@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker run -it fredericklab/basecontainer:latest bash
+VERSION=latest
+docker pull fredericklab/basecontainer:${VERSION}
+docker run -it fredericklab/basecontainer:${VERSION} bash
