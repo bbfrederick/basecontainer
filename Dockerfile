@@ -1,6 +1,5 @@
 # Use slim-bullseye as a base
-FROM python:3.12-slim-bullseye
-#FROM condaforge/mambaforge:latest
+FROM python:3.12-slim-bookworm
 
 # get build arguments
 ARG BUILD_TIME
@@ -75,9 +74,7 @@ RUN apt-get install -y \
 # install vim and mg so we can debug the container
 RUN apt install -y vim mg
 
-# Fix specific security problems
-RUN apt-get upgrade -y python3 
-RUN apt-get upgrade -y curl
+# Pull in the newest versions of packages to address any security issues
 RUN apt-get upgrade -y 
 
 # Clean up
