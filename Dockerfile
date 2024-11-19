@@ -78,8 +78,7 @@ RUN apt install -y vim mg
 # Fix specific security problems
 RUN apt-get upgrade -y python3 
 RUN apt-get upgrade -y curl
-RUN apt-get upgrade -y glib
-RUN apt-get upgrade -y pam
+RUN apt-get upgrade -y 
 
 # Clean up
 RUN apt-get autoremove
