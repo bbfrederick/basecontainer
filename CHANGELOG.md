@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.4.2 (11/19/24)
+* Added more detailed git version information inside the container
+
 ## Version 0.4.1 (11/19/24)
 * Updated to bookworm
 * Reorganized build
