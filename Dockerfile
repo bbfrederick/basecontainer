@@ -71,14 +71,16 @@ RUN apt-get install -y \
                     dc \
                     procps \
                     file
-RUN apt-get upgrade -y python3
-RUN apt-get autoremove
-
-# Fix specific security problems
-RUN apt-get update glib python3 pam curl
 
 # install vim and mg so we can debug the container
 RUN apt install -y vim mg
+
+# Fix specific security problems
+RUN apt-get upgrade -y python3 pam curl glib
+
+# Clean up
+RUN apt-get autoremove
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ## install mamba to have it around
 RUN cd /root; curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
@@ -139,7 +141,6 @@ RUN uv pip install nda-tools keyrings.alt
 # clean up
 RUN pip cache purge
 RUN mamba clean --all
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV IN_DOCKER_CONTAINER=1
 
