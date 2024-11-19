@@ -126,10 +126,7 @@ RUN uv pip install PyQt6 pyqtgraph
 RUN uv pip install h5py keras tensorflow
 
 # security patches
-RUN uv pip install "wheel>=0.44.0" "werkzeug>=3.0.6" "pyyaml>5.3.1"
-
-# hack to get around the super annoying "urllib3 doesn't match" warning
-RUN pip install requests --force-reinstall
+RUN uv pip install "wheel>=0.44.0" "werkzeug>=3.0.6" "pyyaml>5.3.1" "cryptography>=42.0.4" "urllib3>=1.26.17"
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN pip install --upgrade --force-reinstall requests "certifi>=2024.8.30"
