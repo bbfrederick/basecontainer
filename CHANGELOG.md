@@ -1,5 +1,11 @@
 # Release history
 
+## Version 0.4.1 (11/19/24)
+* Updated to bookworm
+* Reorganized build
+* Use IN_DOCKER_CONTAINER to indicate Docker
+* Some dependabot updates
+
 ## Version 0.4.0 (11/15/24)
 * Fixed path, added procps now works as base for rapidtide (without FSL).
 
