@@ -29,8 +29,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 RUN apt-get update --fix-missing && \
     apt update && \
-    apt-get install -y tzdata && \
-    apt-get install -y cgroup-tools
+    apt-get install -y --no-install-recommends tzdata && \
+    apt-get install -y --no-install-recommends cgroup-tools
 RUN apt-get install -y --no-install-recommends \
                     curl \
                     wget \
@@ -46,10 +46,11 @@ RUN apt-get install -y --no-install-recommends \
                     xterm \
                     lsb-release \
                     jq \
-                    s3fs \
-                    awscli \
                     git
-RUN apt-get install -y \
+RUN apt-get install -y --no-install-recommends \
+                    s3fs \
+                    awscli
+RUN apt-get install -y --no-install-recommends \
                     libdbus-1-dev \
                     libdbus-glib-1-dev \
                     libegl1-mesa-dev \
@@ -63,10 +64,10 @@ RUN apt-get install -y \
                     libxkbcommon-dev \
                     libxkbcommon-x11-dev \
                     libxrender-dev
-RUN apt-get install -y \
+RUN apt-get install -y --no-install-recommends \
                     libgtk2.0-0 \
                     libgomp1
-RUN apt-get install -y \
+RUN apt-get install -y --no-install-recommends \
                     dc \
                     procps \
                     file
