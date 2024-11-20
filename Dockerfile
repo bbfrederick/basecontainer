@@ -76,7 +76,7 @@ RUN apt-get install -y --no-install-recommends \
 RUN apt install -y vim mg
 
 # Pull in the newest versions of packages to address any security issues
-RUN apt-get upgrade -y 
+RUN apt-get dist-upgrade -y 
 
 # Clean up
 RUN apt-get autoremove
