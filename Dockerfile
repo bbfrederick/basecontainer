@@ -47,10 +47,6 @@ RUN apt-get install -y --no-install-recommends \
                     lsb-release \
                     jq \
                     git
-RUN apt-get satisfy "cryptography (>=42.0.4)"
-RUN apt-get install -y --no-install-recommends \
-                    s3fs \
-                    awscli
 RUN apt-get install -y --no-install-recommends \
                     libdbus-1-dev \
                     libdbus-glib-1-dev \
@@ -83,8 +79,8 @@ RUN apt-get dist-upgrade -y
 RUN apt-get autoremove
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# update the debian versions of these packages
-RUN pip install "cryptography>=42.0.4" "urllib3>=1.26.17"
+# install these through pip to get newer versions
+RUN pip install s3fs awscli "cryptography>=42.0.4" "urllib3>=1.26.17"
 
 ## install mamba to have it around
 RUN cd /root; curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
