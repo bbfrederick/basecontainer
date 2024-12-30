@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.4.3 (12/30/24)
+* Change IN_DOCKER_CONTAINER to RUNNING_IN_CONTAINER
+
 ## Version 0.4.2 (11/19/24)
 * Added more detailed git version information inside the container
 

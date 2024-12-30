@@ -142,7 +142,7 @@ RUN uv pip install nda-tools keyrings.alt
 RUN pip cache purge
 RUN mamba clean --all
 
-ENV IN_DOCKER_CONTAINER=1
+ENV RUNNING_IN_CONTAINER=1
 
 RUN cd /root; TZ=GMT date "+%Y-%m-%d %H:%M:%S" > buildtime-basecontainer
 
