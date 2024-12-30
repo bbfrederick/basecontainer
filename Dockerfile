@@ -47,7 +47,7 @@ RUN apt-get install -y --no-install-recommends \
                     lsb-release \
                     jq \
                     git
-RUN apt-get satisfy -y "cryptography (>=42.0.4)"
+RUN apt-get satisfy "cryptography (>=42.0.4)"
 RUN apt-get install -y --no-install-recommends \
                     s3fs \
                     awscli
