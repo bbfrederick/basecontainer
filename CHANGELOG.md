@@ -2,6 +2,7 @@
 
 ## Version 0.4.4 (12/30/24)
 * Updated to 3.12.8-bookworm to remove some security vulnerabilities.
+* Install s3fs and awscli through pip to avoid installing the version of cryptography with the nasty security vulnerability.
 
 ## Version 0.4.3 (12/30/24)
 * Change IN_DOCKER_CONTAINER to RUNNING_IN_CONTAINER.
