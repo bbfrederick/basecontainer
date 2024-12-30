@@ -1,10 +1,13 @@
 # Release history
 
+## Version 0.4.4 (12/30/24)
+* Updated to 3.12.8-bookworm to remove some security vulnerabilities.
+
 ## Version 0.4.3 (12/30/24)
-* Change IN_DOCKER_CONTAINER to RUNNING_IN_CONTAINER
+* Change IN_DOCKER_CONTAINER to RUNNING_IN_CONTAINER.
 
 ## Version 0.4.2 (11/19/24)
-* Added more detailed git version information inside the container
+* Added more detailed git version information inside the container.
 
 ## Version 0.4.1 (11/19/24)
 * Updated to bookworm
