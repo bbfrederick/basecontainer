@@ -1,5 +1,5 @@
 # Use slim-bullseye as a base
-FROM python:3.12.8-bookworm
+FROM python:3.13.1-bookworm
 
 # get build arguments
 ARG BUILD_TIME
