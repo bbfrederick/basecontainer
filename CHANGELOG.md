@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.4.5 (1/29/25)
+* Rebuilt with current debian libraries to mitigate CVE-2024-52533
+
 ## Version 0.4.4 (12/30/24)
 * Updated to 3.12.8-bookworm to remove some security vulnerabilities.
 * Install s3fs and awscli through pip to avoid installing the version of cryptography with the nasty security vulnerability.
