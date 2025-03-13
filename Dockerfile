@@ -124,7 +124,7 @@ RUN uv pip install \
 RUN uv pip install PyQt6 pyqtgraph
 
 # Installing additional precomputed python packages
-RUN uv pip install h5py keras tensorflow
+RUN uv pip install h5py "keras>=3.9.0" tensorflow
 
 # security patches
 RUN uv pip install "wheel>=0.44.0" "werkzeug>=3.0.6" "pyyaml>5.3.1" "cryptography>=42.0.4" "urllib3>=1.26.17"
