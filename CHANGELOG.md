@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.4.7 (3/19/25)
+* Rebuilt with current bookworm container and debian libraries to mitigate more security vulnerabilities.
+
 ## Version 0.4.6 (3/4/25)
 * Rebuilt with current bookworm container and debian libraries to mitigate several xorg-server vulnerabilities.
 
