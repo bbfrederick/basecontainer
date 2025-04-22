@@ -1,5 +1,5 @@
 # Use bookworm as a base
-FROM python:3.12.10-bookworm
+FROM python:3.12-bookworm
 
 # get build arguments
 ARG BUILD_TIME
@@ -79,9 +79,6 @@ RUN apt-get dist-upgrade -y
 RUN apt-get autoremove
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# install these through pip to get newer versions
-RUN pip install s3fs awscli "cryptography>=42.0.4" "urllib3>=1.26.17"
-
 ## install mamba to have it around
 RUN cd /root; curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 RUN cd /root; /bin/bash Miniforge3-$(uname)-$(uname -m).sh -b -p /opt/miniforge3
@@ -102,8 +99,15 @@ RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.bashrc
 RUN echo "mamba activate science" >> ~/.bashrc
 ENV PYTHONENVBIN=/opt/miniforge3/envs/science/bin
 
-# now install a standard set of scientific software
+# update to python 3.12.10
+RUN mamba install "python==3.12.10"
+
+# install uv to make installations faster
 RUN pip install uv
+
+# now install a standard set of scientific software
+RUN uv pip install s3fs awscli "cryptography>=42.0.4" "urllib3>=1.26.17"
+
 RUN uv pip install \
         numpy \
         scipy \
@@ -118,16 +122,14 @@ RUN uv pip install \
         tqdm \
         memory_profiler \
         cgroupspy \
-        versioneer
+        versioneer \
+        h5py \
+        tensorflow \
+        tf-keras \
+        tensorboard
 
 # install pyqt stuff
 RUN uv pip install PyQt6 pyqtgraph
-
-# Installing additional precomputed python packages
-RUN uv pip install h5py tensorflow tf-keras tensorboard
-
-# security patches
-RUN uv pip install "wheel>=0.44.0" "werkzeug>=3.0.6" "pyyaml>5.3.1" "cryptography>=42.0.4" "urllib3>=1.26.17"
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN pip install --upgrade --force-reinstall requests "certifi>=2024.8.30"

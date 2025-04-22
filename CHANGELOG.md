@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.4.8 (4/22/25)
+* Rebuilt with current, rearranged installations, leaned harder into using uv for speed.
+
 ## Version 0.4.7 (3/19/25)
 * Rebuilt with current bookworm container and debian libraries to mitigate more security vulnerabilities.
 
