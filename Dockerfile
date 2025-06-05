@@ -99,9 +99,6 @@ RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.bashrc
 RUN echo "mamba activate science" >> ~/.bashrc
 ENV PYTHONENVBIN=/opt/miniforge3/envs/science/bin
 
-# update to python 3.12.10
-RUN mamba install "python==3.12.10"
-
 # install uv to make installations faster
 RUN pip install uv
 
