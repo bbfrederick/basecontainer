@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.4.8.1 (6/5/25)
+* Rebuild to pull in patched binaries.
+
 ## Version 0.4.8 (4/22/25)
 * Rebuilt with current, rearranged installations, leaned harder into using uv for speed.
 
