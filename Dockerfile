@@ -83,7 +83,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN cd /root; curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 RUN cd /root; /bin/bash Miniforge3-$(uname)-$(uname -m).sh -b -p /opt/miniforge3
 RUN cd /root; rm -f Miniforge3-$(uname)-$(uname -m).sh
-RUN /opt/miniforge3/bin/mamba init
+RUN /opt/miniforge3/bin/mamba shell init --shell bash --root-prefix=~/.local/share/mamba
 
 # Set CPATH for packages relying on compiled libs (e.g. indexed_gzip)
 ENV PATH="$PATH" \
