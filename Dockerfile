@@ -122,7 +122,7 @@ RUN uv pip install \
         versioneer \
         h5py \
         tensorflow \
-        tf-keras \
+        "tf-keras>=2.18.0" \
         tensorboard
 
 # install pyqt stuff
