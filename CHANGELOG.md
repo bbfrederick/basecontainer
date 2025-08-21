@@ -1,9 +1,10 @@
 # Release history
 
-## Version 0.4.9 (6/5/25)
+## Version 0.4.9 (8/21/25)
 * Added sbom and provenance.
 * Fixed mamba init section.
 * Removed explicit python installation (it wsas downgrading base from 3.12.11).
+* Accepted several dependabot updates
 
 ## Version 0.4.8 (4/22/25)
 * Rebuilt with current, rearranged installations, leaned harder into using uv for speed.
