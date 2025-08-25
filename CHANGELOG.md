@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.5.0 (8/25/25)
+* Fixed an environment problem
+
 ## Version 0.4.9 (8/21/25)
 * Added sbom and provenance.
 * Fixed mamba init section.
