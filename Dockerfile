@@ -122,7 +122,6 @@ RUN uv pip install \
         versioneer \
         h5py \
         torch \
-        torchvision \
         tensorflow \
         "tf-keras>=2.18.0" \
         tensorboard
