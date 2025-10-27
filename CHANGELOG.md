@@ -1,5 +1,9 @@
 # Release history
 
+## Version 0.6.0 (10/27/25)
+* Finally upgraded base to 3.13-bookworm now that there's a working version of tensorflow.
+* Added torch and torchvision to install to give the option to not use tensorflow.
+
 ## Version 0.5.0 (8/25/25)
 * Fixed an environment problem
 * Dependabot update
