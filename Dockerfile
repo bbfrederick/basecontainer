@@ -1,5 +1,5 @@
 # Use bookworm as a base
-FROM python:3.12-bookworm
+FROM python:3.13-bookworm
 
 # get build arguments
 ARG BUILD_TIME
@@ -121,6 +121,8 @@ RUN uv pip install \
         cgroupspy \
         versioneer \
         h5py \
+        torch \
+        torchvision \
         tensorflow \
         "tf-keras>=2.18.0" \
         tensorboard
