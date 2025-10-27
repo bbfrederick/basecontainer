@@ -121,10 +121,12 @@ RUN uv pip install \
         cgroupspy \
         versioneer \
         h5py \
-        torch \
         tensorflow \
-        "tf-keras>=2.18.0" \
-        tensorboard
+        "tf-keras>=2.18.0" 
+
+RUN uv pip install \
+        torch \
+        --index-url https://download.pytorch.org/whl/cpu
 
 # install pyqt stuff
 RUN uv pip install PyQt6 pyqtgraph
