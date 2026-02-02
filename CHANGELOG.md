@@ -2,6 +2,7 @@
 
 ## Version 0.7.0 (2/2/26)
 * Updated urllib3 and wheel to fix security vulnerabilities.
+* Clean the uv cache.
 
 ## Version 0.6.1 (10/27/25)
 * Forced CPU only version of torch and removed torchvision to make the amd64 container much smaller.
