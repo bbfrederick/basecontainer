@@ -27,3 +27,4 @@ docker buildx build . \
     --build-arg VERSION=$version \
     --build-arg BUILD_DATE=`date +"%Y%m%dT%H%M%S"` \
     --build-arg VCS_REF=`git rev-parse HEAD`
+    #--platform linux/arm64,linux/amd64 \

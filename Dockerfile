@@ -103,10 +103,10 @@ ENV PYTHONENVBIN=/opt/miniforge3/envs/science/bin
 RUN pip install uv
 
 # now install a standard set of scientific software
-RUN uv pip install s3fs awscli "cryptography>=42.0.4"
+RUN mamba activate science; uv pip install s3fs awscli "cryptography>=42.0.4"
 #RUN uv pip install s3fs awscli "cryptography>=42.0.4" "urllib3>=2.6.3"
 
-RUN uv pip install \
+RUN mamba activate science; uv pip install \
         numpy \
         scipy \
         matplotlib \
@@ -126,22 +126,22 @@ RUN uv pip install \
         "urllib3>=2.6.3" \
         "tf-keras>=2.18.0" 
 
-RUN uv pip install \
+RUN mamba activate science; uv pip install \
         torch \
         --index-url https://download.pytorch.org/whl/cpu
 
 # install pyqt stuff
-RUN uv pip install PyQt6 pyqtgraph
+RUN mamba activate science; uv pip install PyQt6 pyqtgraph
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
-RUN pip install --upgrade --force-reinstall requests "certifi>=2024.8.30"
+RUN mamba activate science; pip install --upgrade --force-reinstall requests "certifi>=2024.8.30"
 
 # NDA downloader
-RUN uv pip install nda-tools keyrings.alt
+RUN mamba activate science; uv pip install nda-tools keyrings.alt
 
 # clean up
 RUN pip cache purge
-RUN mamba clean --all
+RUN mamba activate science; mamba clean --all
 
 ENV RUNNING_IN_CONTAINER=1
 
