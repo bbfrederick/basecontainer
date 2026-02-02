@@ -1,13 +1,17 @@
 #!/bin/bash
 
+echo setting variables
 MYIPADDRESS=`ifconfig en0 | grep 'inet ' | awk '{print $2}'`
 VERSION=latest
 
 # allow network connections in Xquartz Security settings
+echo allowing network connections
 xhost +
 
 # Allow your local user access via xhost: xhost +SI:localuser:picachooser and create a similar user with docker run option: --user=$(id -u):$(id -g)
-#docker pull fredericklab/basecontainer:${VERSION}
+echo pulling container
+docker pull fredericklab/basecontainer:${VERSION}
+echo running container
 docker run \
     --network host\
     -it \
