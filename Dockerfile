@@ -103,7 +103,7 @@ ENV PYTHONENVBIN=/opt/miniforge3/envs/science/bin
 RUN pip install uv
 
 # now install a standard set of scientific software
-RUN uv pip install s3fs awscli "cryptography>=42.0.4" "urllib3>=1.26.17"
+RUN uv pip install s3fs awscli "cryptography>=42.0.4" "urllib3>=2.6.3"
 
 RUN uv pip install \
         numpy \
