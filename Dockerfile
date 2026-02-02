@@ -102,11 +102,11 @@ ENV PYTHONENVBIN=/opt/miniforge3/envs/science/bin
 # install uv to make installations faster
 RUN pip install uv
 
-# now install a standard set of scientific software
-RUN mamba activate science; uv pip install s3fs awscli "cryptography>=42.0.4"
-#RUN uv pip install s3fs awscli "cryptography>=42.0.4" "urllib3>=2.6.3"
+# put in some AWS tools and patch known security problems
+RUN uv pip install s3fs awscli "wheel>=0.46.3" "cryptography>=46.0.4" "urllib3>=2.6.3"
 
-RUN mamba activate science; uv pip install \
+# now install a standard set of scientific software
+RUN uv pip install \
         numpy \
         scipy \
         matplotlib \
@@ -116,6 +116,7 @@ RUN mamba activate science; uv pip install \
         scikit-learn \
         nilearn \
         statsmodels \
+        pywavelets \
         nibabel \
         tqdm \
         memory_profiler \
@@ -123,25 +124,26 @@ RUN mamba activate science; uv pip install \
         versioneer \
         h5py \
         tensorflow \
-        "urllib3>=2.6.3" \
-        "tf-keras>=2.18.0" 
+        "tf-keras>=2.20.1" 
 
-RUN mamba activate science; uv pip install \
+# install the cpu only version of pytorch
+RUN uv pip install \
         torch \
         --index-url https://download.pytorch.org/whl/cpu
 
 # install pyqt stuff
-RUN mamba activate science; uv pip install PyQt6 pyqtgraph
+RUN uv pip install PyQt6 pyqtgraph
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
-RUN mamba activate science; pip install --upgrade --force-reinstall requests "certifi>=2024.8.30"
+RUN pip install --upgrade --force-reinstall requests "certifi>=2026.1.4"
 
 # NDA downloader
-RUN mamba activate science; uv pip install nda-tools keyrings.alt
+RUN uv pip install nda-tools keyrings.alt
 
 # clean up
 RUN pip cache purge
-RUN mamba activate science; mamba clean --all
+RUN uv cache clean
+RUN mamba clean --all
 
 ENV RUNNING_IN_CONTAINER=1
 
