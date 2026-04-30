@@ -29,6 +29,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 RUN apt-get update --fix-missing && \
     apt update && \
+    apt-get upgrade -y \
     apt-get install -y --no-install-recommends tzdata && \
     apt-get install -y --no-install-recommends cgroup-tools
 RUN apt-get install -y --no-install-recommends \
