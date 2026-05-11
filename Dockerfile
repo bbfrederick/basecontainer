@@ -76,6 +76,9 @@ RUN apt install -y vim mg
 # Pull in the newest versions of packages to address any security issues
 RUN apt-get dist-upgrade -y 
 
+RUN apt-get install -y --no-install-recommends \
+                    imagemagick
+
 # Clean up
 RUN apt-get autoremove
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -104,7 +107,7 @@ ENV PYTHONENVBIN=/opt/miniforge3/envs/science/bin
 RUN pip install uv
 
 # put in some AWS tools and patch known security problems
-RUN uv pip install s3fs awscli "wheel>=0.46.3" "cryptography>=46.0.4" "urllib3>=2.6.3"
+RUN uv pip install s3fs awscli "wheel>=0.46.3" "cryptography>=46.0.4" "urllib3>=2.6.3" "setuptools>=78.1.1"
 
 # now install a standard set of scientific software
 RUN uv pip install \
