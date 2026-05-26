@@ -96,7 +96,7 @@ ENV PATH="$PATH" \
     PYTHONNOUSERSITE=1
 
 # make a scientific software environment
-RUN /opt/miniforge3/bin/mamba create -n science python==$(python --version | awk '{print $2}') "setuptools>=78.1.1" "idna>=3.15" pip mamba
+RUN /opt/miniforge3/bin/mamba create -n science python==$(python --version | awk '{print $2}') "setuptools>=78.1.1" "idna>=3.15" "pip>=26.1" mamba
 RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.login
 RUN echo "mamba activate science" >> ~/.login
 RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.bashrc
