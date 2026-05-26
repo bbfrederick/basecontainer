@@ -96,7 +96,7 @@ ENV PATH="$PATH" \
     PYTHONNOUSERSITE=1
 
 # make a scientific software environment
-RUN /opt/miniforge3/bin/mamba create -n science python==$(python --version | awk '{print $2}') pip mamba
+RUN /opt/miniforge3/bin/mamba create -n science python==$(python --version | awk '{print $2}') "setuptools>=78.1.1" "idna>=3.15" pip mamba
 RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.login
 RUN echo "mamba activate science" >> ~/.login
 RUN echo "export PATH='/opt/miniforge3/envs/science/bin:$PATH'" >> ~/.bashrc
@@ -107,7 +107,7 @@ ENV PYTHONENVBIN=/opt/miniforge3/envs/science/bin
 RUN pip install uv
 
 # put in some AWS tools and patch known security problems
-RUN uv pip install s3fs awscli "wheel>=0.46.3" "cryptography>=46.0.4" "urllib3>=2.7.0" "setuptools>=78.1.1"
+RUN uv pip install s3fs awscli "wheel>=0.46.3" "cryptography>=46.0.4" "urllib3>=2.7.0"
 
 # now install a standard set of scientific software
 RUN uv pip install \
@@ -137,6 +137,9 @@ RUN uv pip install \
 
 # install pyqt stuff
 RUN uv pip install PyQt6 pyqtgraph
+
+# one more security patch
+RUN uv pip install "setuptools>=78.1.1"
 
 # hack to get around the super annoying "urllib3 doesn't match" warning
 RUN pip install --upgrade --force-reinstall requests "certifi>=2026.1.4"
