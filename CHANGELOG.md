@@ -1,5 +1,8 @@
 # Release history
 
+## Version 0.7.1 (5/26/26)
+* Updated urllib3 and setuptools and pulled latest bookworm container to fix security vulnerabilities.
+
 ## Version 0.7.0 (2/2/26)
 * Updated urllib3 and wheel to fix security vulnerabilities.
 * Clean the uv cache.

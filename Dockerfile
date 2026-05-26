@@ -107,7 +107,7 @@ ENV PYTHONENVBIN=/opt/miniforge3/envs/science/bin
 RUN pip install uv
 
 # put in some AWS tools and patch known security problems
-RUN uv pip install s3fs awscli "wheel>=0.46.3" "cryptography>=46.0.4" "urllib3>=2.6.3" "setuptools>=78.1.1"
+RUN uv pip install s3fs awscli "wheel>=0.46.3" "cryptography>=46.0.4" "urllib3>=2.7.0" "setuptools>=78.1.1"
 
 # now install a standard set of scientific software
 RUN uv pip install \
